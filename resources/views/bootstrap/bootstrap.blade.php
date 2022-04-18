@@ -1,52 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('bootstrap.template')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index</title>
-    <!-- Bootstrap css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <!-- css -->
-    <link rel="stylesheet" href="./css/index.css">
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-xxl">
-            <a class="navbar-brand" href="#"> <img src="./img/logo.svg" alt=""></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
-                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" style="text-align: center;" id="navbarTogglerDemo02">
-                <ul class="navbar-nav  mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">link</a>
-                    </li>
-                </ul>
-                <div class="d-flex justify-content-center text-end">
-                    <a href="./checkout.html" class="shoppingCar px-3">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-                    <a href="./login.html" class="Login">
-                        <i class="fas fa-user-circle "></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    @section('pageTitle')
+        index
+    @endsection
 
 
-    <main>
+    <!-- 各頁css -->
+    @section('css')
+     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    @endsection
+    
+
+
+    @section('main')
         <!-- Banner -->
         <section id="banner">
             <div class="container-fluid p-0">
@@ -61,13 +27,13 @@
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="./img/banner01.jpeg" class="d-block w-100" alt="...">
+                            <img src="{{ asset('img/banner01.jpeg') }}" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="./img/banner04.jpeg" class="d-block w-100" alt="...">
+                            <img src="{{ asset('img/banner04.jpeg') }}" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="./img/banner03.jpeg" class="d-block w-100" alt="...">
+                            <img src="{{ asset('img/banner03.jpeg') }}" class="d-block w-100" alt="...">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -171,24 +137,24 @@
                 <div class="pic_wall row d-flex m-0 gx-0">
                     <div class="wall_one col d-flex flex-wrap">
                         <div class="picA pic_size_m col p-2">
-                            <img src="./img/pic01.jpeg" alt="">
+                            <img src="{{ asset('img/pic01.jpeg') }}" alt="">
                         </div>
                         <div class="picB pic_size_m col p-2">
-                            <img src="./img/pic02.jpeg" alt="">
+                            <img src="{{ asset('img/pic02.jpeg') }}" alt="">
                         </div>
                         <div class="picC pic_size_l p-2">
-                            <img src="./img/pic03.jpeg" alt="">
+                            <img src="{{ asset('img/pic03.jpeg') }}" alt="">
                         </div>
                     </div>
                     <div class="wall_two col d-flex flex-wrap">
                         <div class="picA pic_size_l p-2">
-                            <img src="./img/pic01.jpeg" alt="">
+                            <img src="{{ asset('img/pic01.jpeg') }}" alt="">
                         </div>
                         <div class="picB pic_size_m col p-2">
-                            <img src="./img/pic02.jpeg" alt="">
+                            <img src="{{ asset('img/pic02.jpeg') }}" alt="">
                         </div>
                         <div class="picC pic_size_m col p-2">
-                            <img src="./img/pic03.jpeg" alt="">
+                            <img src="{{ asset('img/pic03.jpeg') }}" alt="">
                         </div>
                     </div>
                 </div>
@@ -274,11 +240,12 @@
                     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
                         <div class="col">
                             <div class="card p-4">
-                                <img src="./img/pic04.jpeg" class="card-img-top mb-4" alt="...">
+                                <img src="{{ asset('img/pic04.jpeg') }}" class="card-img-top mb-4" alt="...">
                                 <div class="card-body">
                                     <h6>SUBTITLE</h6>
                                     <h5 class="card-title mb-3">Chichen Itza</h5>
-                                    <p class="card-text">Fingerstache flexitarian street art 8-bit waistcoat. Distillery
+                                    <p class="card-text">Fingerstache flexitarian street art 8-bit waistcoat.
+                                        Distillery
                                         hexagon disrupt edison bulbche.</p>
                                 </div>
                             </div>
@@ -286,11 +253,12 @@
 
                         <div class="col">
                             <div class="card p-4">
-                                <img src="./img/pic04.jpeg" class="card-img-top mb-4" alt="...">
+                                <img src="{{ asset('img/pic04.jpeg') }}" class="card-img-top mb-4" alt="...">
                                 <div class="card-body">
                                     <h6>SUBTITLE</h6>
                                     <h5 class="card-title mb-3">Chichen Itza</h5>
-                                    <p class="card-text">Fingerstache flexitarian street art 8-bit waistcoat. Distillery
+                                    <p class="card-text">Fingerstache flexitarian street art 8-bit waistcoat.
+                                        Distillery
                                         hexagon disrupt edison bulbche.</p>
                                 </div>
                             </div>
@@ -298,11 +266,12 @@
 
                         <div class="col">
                             <div class="card p-4">
-                                <img src="./img/pic04.jpeg" class="card-img-top mb-4" alt="...">
+                                <img src="{{ asset('img/pic04.jpeg') }}" class="card-img-top mb-4" alt="...">
                                 <div class="card-body">
                                     <h6>SUBTITLE</h6>
                                     <h5 class="card-title mb-3">Chichen Itza</h5>
-                                    <p class="card-text">Fingerstache flexitarian street art 8-bit waistcoat. Distillery
+                                    <p class="card-text">Fingerstache flexitarian street art 8-bit waistcoat.
+                                        Distillery
                                         hexagon disrupt edison bulbche.</p>
                                 </div>
                             </div>
@@ -310,11 +279,12 @@
 
                         <div class="col">
                             <div class="card p-4">
-                                <img src="./img/pic04.jpeg" class="card-img-top mb-4" alt="...">
+                                <img src="{{ asset('img/pic04.jpeg') }}" class="card-img-top mb-4" alt="...">
                                 <div class="card-body">
                                     <h6>SUBTITLE</h6>
                                     <h5 class="card-title mb-3">Chichen Itza</h5>
-                                    <p class="card-text">Fingerstache flexitarian street art 8-bit waistcoat. Distillery
+                                    <p class="card-text">Fingerstache flexitarian street art 8-bit waistcoat.
+                                        Distillery
                                         hexagon disrupt edison bulbche.</p>
                                 </div>
                             </div>
@@ -383,7 +353,7 @@
                 <!-- 商品照片 -->
                 <div class="products row row-cols-1 row-cols-lg-2 d-flex">
                     <div class="products_img col h-auto">
-                        <img class="h-100" src="./img/Product01.jpeg" alt="">
+                        <img class="h-100" src="{{ asset('img/Product01.jpeg') }}" alt="">
                     </div>
                     <!-- 商品詳細介紹 -->
                     <div class="products_content col ps-5 pe-0 pt-4 pb-4">
@@ -487,7 +457,7 @@
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
                     <div class="col">
                         <div class="card wall" style="background-color: #fff;">
-                            <img src="./img/banner03.jpeg" alt="">
+                            <img src="{{ asset('img/banner03.jpeg') }}" alt="">
 
                             <div class="card-body">
                                 <h6>CATEGORY</h6>
@@ -500,7 +470,7 @@
 
                     <div class="col">
                         <div class="card wall" style="background-color: #fff;">
-                            <img src="./img/banner03.jpeg" alt="">
+                            <img src="{{ asset('img/banner03.jpeg') }}" alt="">
 
                             <div class="card-body">
                                 <h6>CATEGORY</h6>
@@ -513,7 +483,7 @@
 
                     <div class="col">
                         <div class="card wall" style="background-color: #fff;">
-                            <img src="./img/banner03.jpeg" alt="">
+                            <img src="{{ asset('img/banner03.jpeg') }}" alt="">
 
                             <div class="card-body">
                                 <h6>CATEGORY</h6>
@@ -526,7 +496,7 @@
 
                     <div class="col">
                         <div class="card wall" style="background-color: #fff;">
-                            <img src="./img/banner03.jpeg" alt="">
+                            <img src="{{ asset('img/banner03.jpeg') }}" alt="">
 
                             <div class="card-body">
                                 <h6>CATEGORY</h6>
@@ -539,7 +509,7 @@
 
                     <div class="col">
                         <div class="card wall" style="background-color: #fff;">
-                            <img src="./img/banner03.jpeg" alt="">
+                            <img src="{{ asset('img/banner03.jpeg') }}" alt="">
 
                             <div class="card-body">
                                 <h6>CATEGORY</h6>
@@ -552,7 +522,7 @@
 
                     <div class="col">
                         <div class="card wall" style="background-color: #fff;">
-                            <img src="./img/banner03.jpeg" alt="">
+                            <img src="{{ asset('img/banner03.jpeg') }}" alt="">
 
                             <div class="card-body">
                                 <h6>CATEGORY</h6>
@@ -565,7 +535,7 @@
 
                     <div class="col">
                         <div class="card wall" style="background-color: #fff;">
-                            <img src="./img/banner03.jpeg" alt="">
+                            <img src="{{ asset('img/banner03.jpeg') }}" alt="">
 
                             <div class="card-body">
                                 <h6>CATEGORY</h6>
@@ -578,7 +548,7 @@
 
                     <div class="col">
                         <div class="card wall" style="background-color: #fff;">
-                            <img src="./img/banner03.jpeg" alt="">
+                            <img src="{{ asset('img/banner03.jpeg') }}" alt="">
 
                             <div class="card-body">
                                 <h6>CATEGORY</h6>
@@ -623,7 +593,8 @@
                         </div>
                         <!-- submit btn -->
                         <button type="submit" class="btn btn-primary" style="width: 100%;">Submit</button>
-                        <p class="pt-2" style="font-size: .75rem;">Chicharrones blog helvetica normcore iceland tousled
+                        <p class="pt-2" style="font-size: .75rem;">Chicharrones blog helvetica normcore iceland
+                            tousled
                             brook viral
                             artisan.</p>
                     </div>
@@ -631,91 +602,4 @@
                 </div>
             </div>
         </section>
-    </main>
-
-
-
-    <footer id="footer">
-        <div class="container">
-            <div class="footer_content row row-cols-1 row-cols-sm-2 justify-content-between">
-                <div class="col">
-                    <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-
-                        <span class="ml-3 text-xl">數位方塊</span>
-                    </a>
-                    <p class="text-muted">© 2021Air plant banjo lyft occupy retro adaptogen indego</p>
-                </div>
-
-                <div class="sitemap row row-cols-1 row-cols-sm-2 row-cols-xl-4 d-flex mt-5">
-                    <div class="col">
-                        <h5>Section</h5>
-                        <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col">
-                        <h5>Section</h5>
-                        <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col">
-                        <h5>Section</h5>
-                        <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col">
-                        <h5>Section</h5>
-                        <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <section id="footer_company">
-        <div class="container">
-            <div class="row">
-                <p>© 2020 Tailblocks —
-                    <a href="#">@knyttneve</a>
-                </p>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Bootstrap js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/48055bd9f0.js" crossorigin="anonymous"></script>
-    <!-- jquery -->
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
-        integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
-    <script src="./header_footer.js"></script> -->
-
-</body>
-
-</html>
+    @endsection

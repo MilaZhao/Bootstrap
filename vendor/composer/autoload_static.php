@@ -509,6 +509,7 @@ class ComposerStaticInitb150e3b9bac6efc3691d40ac6d5a0875
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\NewController' => __DIR__ . '/../..' . '/app/Http/Controllers/NewController.php',
+        'App\\Http\\Controllers\\ShoppingCarController' => __DIR__ . '/../..' . '/app/Http/Controllers/ShoppingCarController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',

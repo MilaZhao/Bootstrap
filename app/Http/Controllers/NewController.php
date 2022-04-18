@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 
 class NewController extends Controller
 {
-    public function index () {
+    public function index() {
         return view('welcome');
     }
 
-    public function microsoft () {
+    public function microsoft() {
         return view('microsoft');
     }
+
+    
 }

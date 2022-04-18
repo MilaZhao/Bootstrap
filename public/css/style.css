@@ -57,4 +57,11 @@ button:focus {
   background-color: #2b36a8;
   border-color: #2b36a8;
   box-shadow: unset;
+}
+.navbar-brand {
+  width: 40px;
+  height: 32px;
+}
+.navbar-collapse {
+  justify-content: flex-end;
 }/*# sourceMappingURL=style.css.map */

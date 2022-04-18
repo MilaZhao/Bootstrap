@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\NewController;
+use App\Http\Controllers\ShoppingCarController;
+
 
 
 /*
@@ -32,4 +34,10 @@ use App\Http\Controllers\NewController;
 // });
 Route::get('/', [NewController::class, 'index']);
 Route::get('/microsoft', [NewController::class, 'microsoft']);
+Route::get('/bootstrap', [ShoppingCarController::class, 'bootstrap']);
+Route::get('/login', [ShoppingCarController::class, 'login']);
+Route::get('/checkout', [ShoppingCarController::class, 'checkout']);
+
+
+
 

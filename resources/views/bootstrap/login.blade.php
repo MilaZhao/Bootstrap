@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- css -->
-    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="{{asset('css/login.css')}}">
 </head>
 
 <body>
@@ -94,7 +94,7 @@
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label ps-2" for="exampleCheck1">Check me out</label>
                             </div> -->
-                            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                            <button type="submit" class="btn btn-primary mt-3" onclick="location.href='/bootstrap';">Submit</button>
                         </form>
                     </div>
 
