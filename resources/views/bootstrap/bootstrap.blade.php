@@ -63,7 +63,24 @@
                 </div>
                 <!-- 3 Cards -->
                 <div class="info_cards row">
-                    <div class="col-lg-4 col-md-12 d-flex justify-content-center">
+                    @foreach ( $data3 as $news )
+                        <div class="col-lg-4 col-md-12 d-flex justify-content-center">
+                            <div class="info_card text-center py-5">
+                                <svg class="card_icon m-auto" style="width: 80px" fill="none" stroke="currentColor"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10"
+                                    viewBox="0 0 24 24">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                </svg>
+                                <div class="card-body">
+                                    <h5 class="card-title p-1">{{$news->title}}</h5>
+                                    <p class="card-text">{{$news->content}}</p>
+                                    <a href="#" class="card-link p-1">Go somewhere &emsp;<i
+                                            class="fa-solid fa-arrow-right-long"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    {{-- <div class="col-lg-4 col-md-12 d-flex justify-content-center">
                         <div class="info_card text-center py-5">
                             <svg class="card_icon m-auto" style="width: 80px" fill="none" stroke="currentColor"
                                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10"
@@ -80,9 +97,9 @@
                                         class="fa-solid fa-arrow-right-long"></i></a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="col-lg-4 col-md-12 d-flex justify-content-center">
+                    {{-- <div class="col-lg-4 col-md-12 d-flex justify-content-center">
                         <div class="info_card text-center py-5">
                             <svg class="card_icon m-auto" style="width: 80px" fill="none" stroke="currentColor"
                                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10"
@@ -99,9 +116,9 @@
                                         class="fa-solid fa-arrow-right-long"></i></a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="col-lg-4 col-md-12 d-flex justify-content-center">
+                    {{-- <div class="col-lg-4 col-md-12 d-flex justify-content-center">
                         <div class="info_card text-center py-5">
                             <svg class="card_icon m-auto" style="width: 80px" fill="none" stroke="currentColor"
                                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10"
@@ -118,7 +135,7 @@
                                         class="fa-solid fa-arrow-right-long"></i></a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <button class="btn btn-primary mt-5" type="submit">Button</button>
             </div>
