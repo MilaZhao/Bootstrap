@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 
+
 class ShoppingCarController extends Controller
 {
     public function bootstrap() {
@@ -13,7 +14,7 @@ class ShoppingCarController extends Controller
         //$data1 = DB::table('news')->take(3)->get();//抓最舊的3筆
         //$data2 = DB::table('news')->inRandomOrder()->limit(3)->get();//隨機抓3rows
         $data3 = DB::table('news')->orderby('id',"desc")->take(3)->orderby('id','asc')->get();//抓最新 3 rows
-
+        //這邊的$data1,2,3是陣列
         // dd($data1 ,$data2, $data3); 
         
         return view('bootstrap.bootstrap',compact('data3'));
@@ -23,6 +24,13 @@ class ShoppingCarController extends Controller
     }
     public function checkout() {
         return view('bootstrap.checkout');
+    }
+    public function comment() {
+        return view('bootstrap.comment');
+    }
+    public function save_comment(Request $request) {
+        dd($request->all());
+        // return view('bootstrap.comment');
     }
     
 }

@@ -66,11 +66,19 @@
                     @foreach ( $data3 as $news )
                         <div class="col-lg-4 col-md-12 d-flex justify-content-center">
                             <div class="info_card text-center py-5">
-                                <svg class="card_icon m-auto" style="width: 80px" fill="none" stroke="currentColor"
+                                <img src="
+                                    @if ($news->img == "" || $news->img == null)
+                                        {{asset('img/pic02.jpeg')}}
+                                    @else
+                                        {{$news->img}}
+                                    @endif 
+                                    " alt=""  style="width: 80px" >
+                            </div>
+                                {{-- <svg class="card_icon m-auto" style="width: 80px" fill="none" stroke="currentColor"
                                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10"
                                     viewBox="0 0 24 24">
                                     <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                                </svg>
+                                </svg> --}}
                                 <div class="card-body">
                                     <h5 class="card-title p-1">{{$news->title}}</h5>
                                     <p class="card-text">{{$news->content}}</p>
@@ -154,7 +162,13 @@
                 <div class="pic_wall row d-flex m-0 gx-0">
                     <div class="wall_one col d-flex flex-wrap">
                         <div class="picA pic_size_m col p-2">
-                            <img src="{{ asset('img/pic01.jpeg') }}" alt="">
+                            <img src="
+                            @if ($news->img == "" || $news->img == null)
+                                {{asset('img/pic01.jpeg')}}
+                            @else
+                                {{$news->img}}
+                            @endif 
+                            " alt="">
                         </div>
                         <div class="picB pic_size_m col p-2">
                             <img src="{{ asset('img/pic02.jpeg') }}" alt="">

@@ -37,6 +37,10 @@ Route::get('/microsoft', [NewController::class, 'microsoft']);
 Route::get('/bootstrap', [ShoppingCarController::class, 'bootstrap']);
 Route::get('/login', [ShoppingCarController::class, 'login']);
 Route::get('/checkout', [ShoppingCarController::class, 'checkout']);
+Route::get('/comment', [ShoppingCarController::class, 'comment']);
+
+Route::get('/comment/save', [ShoppingCarController::class, 'save_comment']);
+// get 可以換成 post之類的....
 
 
 
