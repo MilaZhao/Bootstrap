@@ -39,6 +39,14 @@ Route::get('/login', [ShoppingCarController::class, 'login']);
 Route::get('/checkout', [ShoppingCarController::class, 'checkout']);
 Route::get('/comment', [ShoppingCarController::class, 'comment']);
 
+Route::get('/comment/delete/{id}', [ShoppingCarController::class, 'delete_comment']);
+Route::get('/comment/edit/{id}', [ShoppingCarController::class, 'edit_comment']);
+Route::get('/comment/update/{id}', [ShoppingCarController::class, 'update_comment']);
+
+
+
+
+
 Route::get('/comment/save', [ShoppingCarController::class, 'save_comment']);
 // get 可以換成 post之類的....
 

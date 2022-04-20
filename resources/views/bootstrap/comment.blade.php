@@ -45,20 +45,34 @@
                     <!-- Comment -->
                     <div class="comment p-0">
                         {{-- 留言貼文 --}}
-                        <div class="commentBlock padding64">
-                            <div class="info d-inline-flex align-items-end mb-3">
-                                <h5 class=" me-3 mb-0">Mac 實用技巧 在終端機下開啓資料夾
-                                </h5>
-                                <span class="username">Finder</span>
-                                <span class="time">2022-04-03 13:04</span>
-                            </div>
-                            <div class="commentText">
-                                <p>We've added a bunch of additional payment options to the gift certificates section, including Apple Pay, Google Pay, bank transfers, and more. 👍
+                        @foreach ($commentdata as $comments)
+                            <div class="commentBlock padding64">
+                                <div class="info d-inline-flex align-items-end mb-3">
+                                    
+                                        <h5 class=" me-3 mb-0">{{$comments->title}}
+                                        </h5>
+                                        <span class="username">{{$comments->userName}}</span>
+                                        <span class="time">{{$comments->created_at}}</span>
+                                    
+                                    {{-- <h5 class=" me-3 mb-0">Mac 實用技巧 在終端機下開啓資料夾
+                                    </h5>
+                                    <span class="username">Finder</span>
+                                    <span class="time">2022-04-03 13:04</span> --}}
+                                </div>
+                                <div class="commentText">
+                                        <p>{{$comments->content}}</p>
+                                    {{-- <p>We've added a bunch of additional payment options to the gift certificates section, including Apple Pay, Google Pay, bank transfers, and more. 👍
+                                        This is a great way to give a contractor or employee access to Laracasts without sharing your card details.
+                                    </p> --}}
+                                </div>
 
-                                    This is a great way to give a contractor or employee access to Laracasts without sharing your card details.</p>
-                            </div>
+                                <div>
+                                    <a href="/comment/delete/{{$comments->id}}">刪除</a>
+                                    <a href="/comment/edit/{{$comments->id}}">編輯</a>
+                                </div>
 
-                        </div>
+                            </div>
+                        @endforeach
 
                         {{-- 留言 --}}
                         <div class="commentWrite p-5 ">
