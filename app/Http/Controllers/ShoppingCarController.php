@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
+use App\Models\Comment;
+
 
 
 class ShoppingCarController extends Controller
@@ -26,14 +28,25 @@ class ShoppingCarController extends Controller
         return view('bootstrap.checkout');
     }
     public function comment() {
-        $commentdata = DB::table('comments')->orderby('id',"desc")->orderby('id','asc')->get();
+        // $commentdata = DB::table('comments')->orderby('id',"desc")->orderby('id','asc')->get();
+        $commentdata = Comment::orderby('id',"desc")->get();
+        // dd ($commentdata);
 
         return view('bootstrap.comment',compact('commentdata'));
     }
     public function save_comment(Request $request) {
         // dd($request->all());
         // return view('bootstrap.comment');
-        DB::table('comments')->insert([
+        // DB::table('comments')->insert([
+        //     'title' => $request->title,
+        //     'userName' => $request->name,
+        //     'content' => $request->content,
+        //     // 'email' => '',
+        // ]); 
+
+        // ↓ 同個寫法
+
+        Comment::create([
             'title' => $request->title,
             'userName' => $request->name,
             'content' => $request->content,
@@ -45,7 +58,9 @@ class ShoppingCarController extends Controller
     }
     //刪除功能
     public function delete_comment($id) {
-        DB::table('comments')->where('id', $id)->delete();
+        //DB::table('comments')->where('id', $id)->delete();
+        Comment::where('id', $id)->delete(); // ↑ 同個寫法
+
         return redirect('/comment'); 
     }  
 
@@ -54,8 +69,9 @@ class ShoppingCarController extends Controller
         // dd($id);
         //$comments = DB::table('comments')->where('id', $id)->first();//從符合條件的比數中，抓第一筆(結果不會是陣列)
 
-        $comments = DB::table('comments')->find($id);//find只能針對id去搜尋 (1)優點：因為只找id，網頁效能比較好 (2)缺點：只能找主key(id)
-
+        //$comments = DB::table('comments')->find($id);//find只能針對id去搜尋 (1)優點：因為只找id，網頁效能比較好 (2)缺點：只能找主key(id)
+        
+        $comments = Comment::find($id); // ↑ 同個寫法
 
         return view('bootstrap.edit',compact('comments'));
     }

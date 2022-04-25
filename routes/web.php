@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\NewController;
 use App\Http\Controllers\ShoppingCarController;
+use App\Http\Controllers\BannerController;
 
 
 
@@ -45,10 +46,26 @@ Route::get('/comment/update/{id}', [ShoppingCarController::class, 'update_commen
 
 
 
-
-
 Route::get('/comment/save', [ShoppingCarController::class, 'save_comment']);
 // get 可以換成 post之類的....
+
+//Banner  部分參考resfuk API  
+Route::prefix('/banner')->group(function(){ //Banner管理相關路由 （手動建立版本）
+    Route::get('/', [BannerController::class, 'index']); // 總表、列表頁
+    Route::get('/create', [BannerController::class, 'create']); // 新增頁
+    Route::post('/store', [BannerController::class, 'store']); // 儲存
+    Route::get('/edit/{id}', [BannerController::class, 'edit']); // 編輯頁
+    Route::post('/update/{id}', [BannerController::class, 'update']); // 更新
+    Route::post('/delete/{id}', [BannerController::class, 'destroy']); // 刪除
+});
+
+
+
+
+
+
+
+
 
 
 

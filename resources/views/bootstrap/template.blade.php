@@ -128,6 +128,7 @@
         </div>
     </section>
 
+   
 
     <!-- Bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -135,6 +136,9 @@
     </script>
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/48055bd9f0.js" crossorigin="anonymous"></script>
+    
+     <!-- 各頁js -->
+     @yield('js')
 
 </body>
 
