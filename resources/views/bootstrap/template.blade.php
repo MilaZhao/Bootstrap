@@ -31,13 +31,16 @@
             <div class="collapse navbar-collapse" style="text-align: center;" id="navbarTogglerDemo02">
                 <ul class="navbar-nav  mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/bootstrap">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="/comment">Comment</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">link</a>
+                        <a class="nav-link" href="/banner">Banner管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/product">Product管理</a>
                     </li>
                 </ul>
                 <div class="d-flex justify-content-center text-end">

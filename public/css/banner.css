@@ -1,3 +1,7 @@
+#banner {
+    background-color: #E0E7ff; 
+}
+
 .border-bottom{
     border-width: 3px !important;
     border-color: gray !important;
@@ -5,7 +9,29 @@
 .banner_img{
     width: 250px;
 }
-/* main #section1{
+main #section1{
     height: unset;
-} */
+}
+.top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 2em;
+}
+.btn{
+    background-color: unset;
+    color: #2d2d2d;
+}
+.btn-primary{
+    background-color: #4856fd;
+    color: #E0E7ff;
+}
+.btn-success{
+   border: 1px solid #2d2d2d;
+}
+.btn-danger{
+   border: 1px solid #dc3545;
+   color: #dc3545;
+}
 

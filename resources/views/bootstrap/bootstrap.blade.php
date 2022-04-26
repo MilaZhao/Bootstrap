@@ -64,7 +64,7 @@
                 <!-- 3 Cards -->
                 <div class="info_cards row">
                     @foreach ( $data3 as $news )
-                        <div class="col-lg-4 col-md-12 d-flex justify-content-center">
+                        <div class="col-lg-4 col-md-12 d-flex justify-content-center align-items-center flex-column ">
                             <div class="info_card text-center py-5">
                                 <img src="
                                     @if ($news->img == "" || $news->img == null)
@@ -72,21 +72,21 @@
                                     @else
                                         {{$news->img}}
                                     @endif 
-                                    " alt=""  style="width: 80px" >
+                                    " alt="" class="rounded-circle"  style="width: 80px; height: 80px;" >
                             </div>
                                 {{-- <svg class="card_icon m-auto" style="width: 80px" fill="none" stroke="currentColor"
                                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10"
                                     viewBox="0 0 24 24">
                                     <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
                                 </svg> --}}
-                                <div class="card-body">
-                                    <h5 class="card-title p-1">{{$news->title}}</h5>
-                                    <p class="card-text">{{$news->content}}</p>
-                                    <a href="#" class="card-link p-1">Go somewhere &emsp;<i
-                                            class="fa-solid fa-arrow-right-long"></i></a>
-                                </div>
+                             <div class="card-body text-center">
+                                 <h5 class="card-title p-1">{{$news->title}}</h5>
+                                 <p class="card-text">{{$news->content}}</p>
+                                 <a href="#" class="card-link p-1">Go somewhere &emsp;<i
+                                        class="fa-solid fa-arrow-right-long"></i></a>
                             </div>
                         </div>
+                    
                     @endforeach
                     {{-- <div class="col-lg-4 col-md-12 d-flex justify-content-center">
                         <div class="info_card text-center py-5">
@@ -384,12 +384,18 @@
                 <!-- 商品照片 -->
                 <div class="products row row-cols-1 row-cols-lg-2 d-flex">
                     <div class="products_img col h-auto">
-                        <img class="h-100" src="{{ asset('img/Product01.jpeg') }}" alt="">
+                        <img class="h-100" src="
+                        @if ($ProductsInRandomOrder->img_path == "" || $ProductsInRandomOrder->img_path == null)
+                                        {{asset('/storage/product/LPNBnAtPENn0EqWGHptkJvAM0XnFg5Y08dTSL9mA.jpg')}}
+                                    @else
+                                        {{$ProductsInRandomOrder->img_path}}
+                                    @endif 
+                                    " alt="" >
                     </div>
                     <!-- 商品詳細介紹 -->
                     <div class="products_content col ps-5 pe-0 pt-4 pb-4">
-                        <h6>BRAND NAME</h6>
-                        <h5 class="card-title mb-3">The Catcher in the Rye</h5>
+                        <h6>{{$ProductsInRandomOrder->type}}</h6>
+                        <h5 class="card-title mb-3">{{$ProductsInRandomOrder->title}}</h5>
                         <div class="rating pb-3">
                             <span class="star_icon">
                                 <svg class="star" style="width: 16px;" fill="currentColor" stroke="currentColor"
@@ -448,13 +454,7 @@
 
                             </span>
                         </div>
-                        <p class="card-text">Fam locavore kickstarter distillery. Mixtape chillwave tumeric sriracha
-                            taximy
-                            chia microdosing tilde DIY. XOXO fam indxgo juiceramps cornhole raw denim forage brooklyn.
-                            Everyday carry
-                            +1 seitan poutine tumeric. Gastropub blue bottle austin listicle pour-over, neutra jean
-                            shorts keytar
-                            banjo tattooed umami cardigan.</p>
+                        <p class="card-text">{{$ProductsInRandomOrder->content}}</p>
 
                         <div class="color_size mt-4 mb-4">
                             <span class="title me-3">Color</span>
@@ -472,7 +472,7 @@
                             </select>
                         </div>
                         <div class="price d-flex">
-                            <span class="price col">$58.00</span>
+                            <span class="price col">${{$ProductsInRandomOrder->price}}</span>
                             <div class="button_item col d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary">Button</button>
                                 <button class="like btn btn-light ms-3"><i class="fa-solid fa-heart"></i></button>
@@ -483,10 +483,36 @@
             </div>
         </section>
 
+
+        {{-- 卡片商品 --}}
         <section id="cads">
             <div class="container">
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
-                    <div class="col">
+                    @foreach ( $ProductsTake as $products )
+                        
+                        <div class="col">
+                            <div class="card wall" style="background-color: #fff;">
+                                <img src="{{asset($products->img_path)}}" alt="">
+                                {{-- <img src="
+                                @if ($products->img_path == "" || $products->img_path == null)
+                                    {{asset('/storage/product/LPNBnAtPENn0EqWGHptkJvAM0XnFg5Y08dTSL9mA.jpg')}}
+                                @else
+                                    {{$products->img_path}}
+                                @endif 
+                                " alt="" > --}}
+
+                                <div class="card-body">
+                                    <h6>{{$products->type}}</h6>
+                                    <h5 class="card-title mb-3">{{$products->title}}</h5>
+                                    <p class="card-text">${{$products->price}}</p>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    @endforeach
+
+                    {{-- <div class="col">
                         <div class="card wall" style="background-color: #fff;">
                             <img src="{{ asset('img/banner03.jpeg') }}" alt="">
 
@@ -575,20 +601,7 @@
 
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card wall" style="background-color: #fff;">
-                            <img src="{{ asset('img/banner03.jpeg') }}" alt="">
-
-                            <div class="card-body">
-                                <h6>CATEGORY</h6>
-                                <h5 class="card-title mb-3">The Catalyzer</h5>
-                                <p class="card-text">$16.00</p>
-
-                            </div>
-                        </div>
-                    </div>
+                    </div> --}}
 
                 </div>
         </section>

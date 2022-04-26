@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\NewController;
 use App\Http\Controllers\ShoppingCarController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\ProductController;
+
 
 
 
@@ -57,6 +59,17 @@ Route::prefix('/banner')->group(function(){ //Banner管理相關路由 （手動
     Route::get('/edit/{id}', [BannerController::class, 'edit']); // 編輯頁
     Route::post('/update/{id}', [BannerController::class, 'update']); // 更新
     Route::post('/delete/{id}', [BannerController::class, 'destroy']); // 刪除
+});
+
+
+//Product  部分參考resfuk API  
+Route::prefix('/product')->group(function(){ //Product管理相關路由 （手動建立版本）
+    Route::get('/', [ProductController::class, 'index']); // 總表、列表頁
+    Route::get('/create', [ProductController::class, 'create']); // 新增頁
+    Route::post('/store', [ProductController::class, 'store']); // 儲存
+    Route::get('/edit/{id}', [ProductController::class, 'edit']); // 編輯頁
+    Route::post('/update/{id}', [ProductController::class, 'update']); // 更新
+    Route::post('/delete/{id}', [ProductController::class, 'destroy']); // 刪除
 });
 
 

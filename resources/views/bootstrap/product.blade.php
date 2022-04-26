@@ -1,6 +1,6 @@
 @extends('bootstrap.template')
     @section('pageTitle')
-        Banner編輯
+        Product編輯
     @endsection
     <!-- 各頁css -->
     @section('css')
@@ -16,36 +16,52 @@
                 <div class="content row m-auto p-5">
                     
                     <div class="top">
-                        <h1 class="displayTitle">Banner管理</h1>
-                        <a href="/banner/create" class="btn btn-primary">新增BANNER</a>
+                        <h1 class="displayTitle">Product管理</h1>
+                        <a href="/product/create" class="btn btn-primary">新增Product</a>
                     </div>
                     
                     <!-- Comment -->
                     <div class="comment p-0">
 
 
-                        <table id="banner_list" class="display">
+                        <table id="product_list" class="display">
                             <thead>
                                 <tr>
-                                    <th>圖片預覽</th>
                                     <th>圖片權重</th>
+                                    <th>圖片預覽</th>
+                                    <th>商品類型</th>
+                                    <th>商品名稱</th>
+                                    <th>價錢</th>
+                                    <th>數量</th>
+                                    <th>描述</th>
                                     <th>功能</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($banners as $banner)
+                                @foreach ($products as $product)
                                 <tr>
+                                    <td>{{$product->weight}}</td>
+
                                     <td>
-                                        <div class="banner_img">
-                                            <img src="{{$banner->img_path}}" alt="" class="w-100" style="{{$banner->img_opacity}}">
+                                        <div class="$product_img">
+                                            <img src="{{$product->img_path}}" alt="" class="w-100" style="{{$product->img_opacity}}">
                                         </div>
                                     </td>
-                                    <td>{{$banner->weight}}</td>
+
+                                   
+                                    <td>{{$product->type}}</td>
+                                    <td>{{$product->title}}</td>
+                                    <td>{{$product->price}}</td>
+                                    <td>{{$product->number}}</td>
+                                    <td>{{$product->content}}</td>
+
+
+
                                     <td>
-                                        <button class="btn btn-success" onclick="location.href='/banner/edit/{{$banner->id}}'">編輯</button>
+                                        <button class="btn btn-success" onclick="location.href='/product/edit/{{$product->id}}'">編輯</button>
                                         
-                                        <button class="btn btn-danger" onclick="document.querySelector('#deleteForm{{$banner->id}}').submit();">刪除</button>
-                                        <form action="/banner/delete/{{$banner->id}}" method="post" id="deleteForm{{$banner->id}}" hidden>
+                                        <button class="btn btn-danger" onclick="document.querySelector('#deleteForm{{$product->id}}').submit();">刪除</button>
+                                        <form action="/product/delete/{{$product->id}}" method="post" id="deleteForm{{$product->id}}" hidden>
                                             @csrf
                                         </form>
                                     </td>
@@ -73,7 +89,7 @@
        
         <script>
             $(document).ready( function () {
-                $('#banner_list').DataTable();
+                $('#product_list').DataTable();
             });
         </script>
     @endsection
