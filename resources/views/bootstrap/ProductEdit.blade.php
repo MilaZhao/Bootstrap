@@ -75,7 +75,7 @@
                             </form>
                             @foreach ( $product->imgs as $item )
                                 <form action="/product/delete_img/{{$item->id}}" method="post" hidden id="deleteForm{{$item->id}}">
-                                    @method('DELETE')
+                                    @method('DELETE') {{-- 對應到web.php的Route::delete --}}
                                     @csrf
                                 </form>
                                    

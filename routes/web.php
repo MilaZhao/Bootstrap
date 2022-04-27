@@ -74,6 +74,7 @@ Route::prefix('/product')->group(function(){ //Product管理相關路由 （手�
     Route::post('/delete/{id}', [ProductController::class, 'destroy']); // 刪除
 
     Route::delete('/delete_img/{img_id}', [ProductController::class, 'delete_img']); // 刪除
+    // 對應到 html 的 @method('DELETE')
     
 
 });
