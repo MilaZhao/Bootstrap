@@ -25,8 +25,19 @@
                                 <form class="d-flex flex-column" action="/product/store" method="post" enctype="multipart/form-data"> <!--需跟route對應--> <!-- 需加上 enctype="multipart/form-data"後台才有辦法存到圖片資料，不然只會有檔名 -->
                                     @csrf <!-- 金鑰 -->
 
-                                    <label for="product_img">Product圖片上傳</label>
+                                    {{-- 上傳後顯示 主要 商品圖片 --}}
+                                    {{-- <div>現在的圖片</div> --}}
+                                    {{-- <img id="blah" src="{{asset($product->img_path)}}" alt=""> --}}
+
+                                    {{-- 主要商品上傳 --}}
+                                    <label for="product_img">Product主要圖片上傳</label>
                                     <input type="file" name="product_img" id="product_img">
+
+
+                                    {{-- 次要商品上傳 --}}
+                                    <label for="product_img">Product次要圖片上傳</label>
+                                    {{-- multiple可選多張圖片，accept可以指定上傳格式，[]將上傳的圖片變成陣列 --}}
+                                    <input type="file" name="second_img[]" id="product_img" multiple  accept="image/*">
 
                                     <label for="weight">權重設定</label>
                                     <input type="number" name="weight" id="weight">

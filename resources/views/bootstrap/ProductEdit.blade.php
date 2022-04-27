@@ -23,9 +23,29 @@
                             <form class="d-flex flex-column" action="/product/update/{{$product->id}}" method="post" enctype="multipart/form-data"> <!--需跟route對應--> <!-- 需加上 enctype="multipart/form-data"後台才有辦法存到圖片資料，不然只會有檔名 -->
                                 @csrf <!-- 金鑰 -->
                                 <div>現在的圖片</div>
+                                {{-- 上傳後顯示主要商品圖片 --}}
                                 <img id="blah" src="{{asset($product->img_path)}}" alt="">
+
+                                {{-- 主要商品上傳 --}}
                                 <label for="product_img">Product圖片上傳</label>
                                 <input type="file" name="product_img" id="product_img" value="">
+
+
+                                 {{-- 上傳後顯示 次要 商品圖片 --}}
+                                 <div>次要的圖片</div>
+                                 <div class="d-flex flex-wrap align-items-start">
+                                     {{-- $item 為自定義名稱，當$product->imgs取出的圖片陣列都會儲存到$item裡面 --}}
+                                     {{-- dd的效果 ： {{$product->imgs}} --}}
+                                     @foreach ( $product->imgs as $item ) 
+                                         <img src="{{asset($item->img_path)}}" alt="" style="width: 150px;" class="me-3">
+                                         <button class="btn btn-danger w-100" type="button" onclick="document.querySelector('#deleteForm{{$item->id}}').submit();">刪除</button>
+                                     @endforeach
+                                 </div>
+
+                                {{-- 次要商品上傳 --}}
+                                <label for="product_img">Product次要圖片上傳</label>
+                                {{-- multiple可選多張圖片，accept可以指定上傳格式，[]將上傳的圖片變成陣列 --}}
+                                <input type="file" name="second_img[]" id="product_img" multiple  accept="image/*">
 
                                 <label for="weight">權重設定</label>
                                 <input type="numver" name="weight" id="weight" value="{{$product->weight}}">
@@ -53,6 +73,13 @@
                                     <button class="btn btn-primary" type="submit">修改Product</button>
                                 </div>
                             </form>
+                            @foreach ( $product->imgs as $item )
+                                <form action="/product/delete_img/{{$item->id}}" method="post" hidden id="deleteForm{{$item->id}}">
+                                    @method('DELETE')
+                                    @csrf
+                                </form>
+                                   
+                            @endforeach
                         </div>
                     </div>
                 </div>

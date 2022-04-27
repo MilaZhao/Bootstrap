@@ -41,7 +41,7 @@
                                 @foreach ($products as $product)
                                 <tr>
                                     <td>{{$product->weight}}</td>
-
+                                    {{-- 主要商品 --}}
                                     <td>
                                         <div class="$product_img">
                                             <img src="{{$product->img_path}}" alt="" class="w-100" style="{{$product->img_opacity}}">
