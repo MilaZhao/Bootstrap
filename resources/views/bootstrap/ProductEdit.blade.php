@@ -34,12 +34,29 @@
                                  {{-- 上傳後顯示 次要 商品圖片 --}}
                                  <div>次要的圖片</div>
                                  <div class="d-flex flex-wrap align-items-start">
-                                     {{-- $item 為自定義名稱，當$product->imgs取出的圖片陣列都會儲存到$item裡面 --}}
-                                     {{-- dd的效果 ： {{$product->imgs}} --}}
+
+                                     
+
+                                     
                                      @foreach ( $product->imgs as $item ) 
-                                         <img src="{{asset($item->img_path)}}" alt="" style="width: 150px;" class="me-3">
-                                         <button class="btn btn-danger w-100" type="button" onclick="document.querySelector('#deleteForm{{$item->id}}').submit();">刪除</button>
+                                        <!-- 不使用fetch的寫法 -->
+                                         {{-- <img src="{{asset($item->img_path)}}" alt="" style="width: 150px;" class="me-3">
+                                         <button class="btn btn-danger w-100" type="button" onclick="document.querySelector('#deleteForm{{$item->id}}').submit();">刪除</button> --}}
+
+                                            {{-- $item 為自定義名稱，當$product->imgs取出的圖片陣列都會儲存到$item裡面 --}}
+                                            {{-- dd的效果 ： {{$product->imgs}} --}}
+
+
+                                         <!-- 使用fetch的寫法 -->
+                                         <div class="mb-5" id="sup_img{{$item->id}}">
+                                            <img src="{{asset($item->img_path)}}" alt="" style="width: 150px;" class="w-50 me-3 mb-3">
+                                            <button class="btn btn-danger w-50" type="button" onclick="delete_img({{$item->id}})">刪除</button>
+                                         </div>
+
                                      @endforeach
+
+ 
+
                                  </div>
 
                                 {{-- 次要商品上傳 --}}
@@ -73,13 +90,15 @@
                                     <button class="btn btn-primary" type="submit">修改Product</button>
                                 </div>
                             </form>
-                            @foreach ( $product->imgs as $item )
+                            {{-- 使用fetch 就可以不使用這段 --}}
+                            {{-- @foreach ( $product->imgs as $item )
                                 <form action="/product/delete_img/{{$item->id}}" method="post" hidden id="deleteForm{{$item->id}}">
-                                    @method('DELETE') {{-- 對應到web.php的Route::delete --}}
+                                    <!-- 對應到web.php的Route::delete -->
+                                    @method('DELETE') 
                                     @csrf
                                 </form>
-                                   
-                            @endforeach
+                            @endforeach --}}
+                            
                         </div>
                     </div>
                 </div>
@@ -95,5 +114,24 @@
                         blah.src = URL.createObjectURL(file)
                 }
             }
+
+            //使用fetch 刪除 ProductEdit管理頁 的次要圖片
+            function delete_img(id){
+                // 準備表單以及內部的資料
+                let formData = new FormData();
+                formData.append("_method", 'DELETE');
+                formData.append("_token", '{{ csrf_token() }}');
+
+                //將準備好的表單籍由fetch送到後台
+                fetch("/product/delete_img/"+id,{
+                    method:'POST',
+                    body:formData
+                    }).then(function(response) {
+                        //成功從資料庫删除資料後，將自己的HTML元素消除
+                        let element = document.querySelector('#sup_img'+id)
+                        element.parentNode.removeChild(element);
+                })
+            }
+            //備註 fetch 不會自動更新網頁
         </script>
     @endsection

@@ -126,7 +126,7 @@ class ProductController extends Controller
 
         return redirect('/product');
     }
-
+   
     //刪除次要圖片
     public function delete_img($img_id)
     {
