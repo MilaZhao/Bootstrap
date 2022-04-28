@@ -1,7 +1,16 @@
-@extends('bootstrap.template')
+@extends('layouts.app')
+
     @section('pageTitle')
         ProductEdit編輯頁
     @endsection
+    
+    <!-- Bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+    <!-- 通用css -->
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    
     <!-- 各頁css -->
     @section('css')
         <link rel="stylesheet" href="{{ asset('css/comment.css') }}">
@@ -13,6 +22,7 @@
         <div class="container">
             <div class="content row m-auto p-5">
                 <h1 class="displayTitle mb-5">ProductEdit管理</h1>
+               
                 <!-- Comment -->
                 <div class="comment p-0">
 
@@ -21,23 +31,23 @@
                     <div id="section2">
                         <div class="content">
                             <form class="d-flex flex-column" action="/product/update/{{$product->id}}" method="post" enctype="multipart/form-data"> <!--需跟route對應--> <!-- 需加上 enctype="multipart/form-data"後台才有辦法存到圖片資料，不然只會有檔名 -->
-                                @csrf <!-- 金鑰 -->
+                                
+                                <!-- 金鑰 -->
+                                @csrf 
                                 <div>現在的圖片</div>
-                                {{-- 上傳後顯示主要商品圖片 --}}
+
+                                <!-- 上傳後顯示主要商品圖片 -->
                                 <img id="blah" src="{{asset($product->img_path)}}" alt="">
 
-                                {{-- 主要商品上傳 --}}
+                                <!-- 主要商品上傳 -->
                                 <label for="product_img">Product圖片上傳</label>
                                 <input type="file" name="product_img" id="product_img" value="">
 
 
-                                 {{-- 上傳後顯示 次要 商品圖片 --}}
+                                 <!-- 上傳後顯示 次要 商品圖片 -->
                                  <div>次要的圖片</div>
                                  <div class="d-flex flex-wrap align-items-start">
 
-                                     
-
-                                     
                                      @foreach ( $product->imgs as $item ) 
                                         <!-- 不使用fetch的寫法 -->
                                          {{-- <img src="{{asset($item->img_path)}}" alt="" style="width: 150px;" class="me-3">
@@ -59,7 +69,7 @@
 
                                  </div>
 
-                                {{-- 次要商品上傳 --}}
+                                <!-- 次要商品上傳 -->
                                 <label for="product_img">Product次要圖片上傳</label>
                                 {{-- multiple可選多張圖片，accept可以指定上傳格式，[]將上傳的圖片變成陣列 --}}
                                 <input type="file" name="second_img[]" id="product_img" multiple  accept="image/*">
@@ -90,7 +100,7 @@
                                     <button class="btn btn-primary" type="submit">修改Product</button>
                                 </div>
                             </form>
-                            {{-- 使用fetch 就可以不使用這段 --}}
+                            <!-- 使用fetch 就可以不使用這段 -->
                             {{-- @foreach ( $product->imgs as $item )
                                 <form action="/product/delete_img/{{$item->id}}" method="post" hidden id="deleteForm{{$item->id}}">
                                     <!-- 對應到web.php的Route::delete -->
@@ -106,6 +116,12 @@
         </section>
     @endsection
     @section('js')
+
+         <!-- Bootstrap js -->
+         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            egrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        </script>
+
         <script>
             //選擇檔案後可以即時顯示變更的圖片（按修改banner前）
             banner_img.onchange = evt => {

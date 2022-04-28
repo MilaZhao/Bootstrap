@@ -1,12 +1,22 @@
-@extends('bootstrap.template')
+@extends('layouts.app')
+
     @section('pageTitle')
         Product編輯
     @endsection
+
+    <!-- Bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+    <!-- 通用css -->
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    
     <!-- 各頁css -->
     @section('css')
         <link rel="stylesheet" href="{{ asset('css/comment.css') }}">
         <link rel="stylesheet" href="{{asset('css/banner.css')}}">
-        {{-- datatable css --}}
+        
+        <!-- datatable css -->
         <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     @endsection
 
@@ -41,7 +51,8 @@
                                 @foreach ($products as $product)
                                 <tr>
                                     <td>{{$product->weight}}</td>
-                                    {{-- 主要商品 --}}
+
+                                    <!-- 主要商品 -->
                                     <td>
                                         <div class="$product_img">
                                             <img src="{{$product->img_path}}" alt="" class="w-100" style="{{$product->img_opacity}}">
@@ -79,12 +90,19 @@
         </section>
     @endsection
     @section('js')
-        {{-- jq cdn --}}
+
+        <!-- Bootstrap js -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            egrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        </script>
+
+        <!-- jq cdn -->
         <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
             integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
             crossorigin="anonymous">
         </script>
-        {{-- datatables js --}}
+
+        <!-- datatables js -->
         <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
        
         <script>

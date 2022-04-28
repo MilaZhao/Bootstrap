@@ -15,12 +15,16 @@ class ProductController extends Controller
     public function index() 
     {
         $products = Product::get();
-        return view('bootstrap.product',compact('products'));
+        $header = '';
+        $slot = '';
+        return view('bootstrap.product',compact('products','header','slot'));
     }
 
     public function create()
     {
-        return view('bootstrap.ProductCreate');
+        $header = '';
+        $slot = '';
+        return view('bootstrap.ProductCreate',compact('header','slot'));
     }
 
     public function store(Request $request)
@@ -57,7 +61,9 @@ class ProductController extends Controller
     {
         //編輯功能
         $product = Product::find($id);
-        return view('bootstrap.ProductEdit',compact('product'));
+        $header = '';
+        $slot = '';
+        return view('bootstrap.ProductEdit',compact('product','header','slot'));
     }
 
     public function update(Request $request, $id)

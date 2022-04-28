@@ -8,10 +8,6 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FilesController;
 
-
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,34 +23,42 @@ use App\Http\Controllers\FilesController;
 //     return view('welcome');
 // });
 
-// Route::get('/test', function () {
-//     return view('welcome');
-// });
-// Route::get('/say', function () {
-//     return 'Hello world';
-// });
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-// Route::get('/index', function () {
-//     return view('index');
-// });
-Route::get('/', [NewController::class, 'index']);
+require __DIR__.'/auth.php';
+
+
+// Route::get('/', [NewController::class, 'index']);
 Route::get('/microsoft', [NewController::class, 'microsoft']);
-Route::get('/bootstrap', [ShoppingCarController::class, 'bootstrap']);
-Route::get('/login', [ShoppingCarController::class, 'login']);
+Route::get('/', [ShoppingCarController::class, 'bootstrap']);
+// Route::get('/login', [ShoppingCarController::class, 'login']);
 Route::get('/checkout', [ShoppingCarController::class, 'checkout']);
-Route::get('/comment', [ShoppingCarController::class, 'comment']);
-
-Route::get('/comment/delete/{id}', [ShoppingCarController::class, 'delete_comment']);
-Route::get('/comment/edit/{id}', [ShoppingCarController::class, 'edit_comment']);
-Route::get('/comment/update/{id}', [ShoppingCarController::class, 'update_comment']);
 
 
 
-Route::get('/comment/save', [ShoppingCarController::class, 'save_comment']);
+// Route::get('/comment', [ShoppingCarController::class, 'comment']);
+// Route::get('/comment/delete/{id}', [ShoppingCarController::class, 'delete_comment']);
+// Route::get('/comment/edit/{id}', [ShoppingCarController::class, 'edit_comment']);
+// Route::get('/comment/update/{id}', [ShoppingCarController::class, 'update_comment']);
+// Route::get('/comment/save', [ShoppingCarController::class, 'save_comment']);
 // get 可以換成 post之類的....
 
+
+
+//Comment  部分參考resfuk API  
+Route::prefix('/comment')->group(function(){
+    Route::get('/', [ShoppingCarController::class, 'comment']);
+    Route::get('/delete/{id}', [ShoppingCarController::class, 'delete_comment']);
+    Route::get('/edit/{id}', [ShoppingCarController::class, 'edit_comment']);
+    Route::get('/update/{id}', [ShoppingCarController::class, 'update_comment']);
+    Route::get('/save', [ShoppingCarController::class, 'save_comment']);
+
+});
+
 //Banner  部分參考resfuk API  
-Route::prefix('/banner')->group(function(){ //Banner管理相關路由 （手動建立版本）
+Route::prefix('/banner')->middleware(['auth'])->group(function(){ //Banner管理相關路由 （手動建立版本）
     Route::get('/', [BannerController::class, 'index']); // 總表、列表頁
     Route::get('/create', [BannerController::class, 'create']); // 新增頁
     Route::post('/store', [BannerController::class, 'store']); // 儲存
@@ -65,7 +69,7 @@ Route::prefix('/banner')->group(function(){ //Banner管理相關路由 （手動
 
 
 //Product  部分參考resfuk API  
-Route::prefix('/product')->group(function(){ //Product管理相關路由 （手動建立版本）
+Route::prefix('/product')->middleware(['auth'])->group(function(){ //Product管理相關路由 （手動建立版本）
     Route::get('/', [ProductController::class, 'index']); // 總表、列表頁
     Route::get('/create', [ProductController::class, 'create']); // 新增頁
     Route::post('/store', [ProductController::class, 'store']); // 儲存
@@ -78,15 +82,3 @@ Route::prefix('/product')->group(function(){ //Product管理相關路由 （手�
     
 
 });
-
-
-
-
-
-
-
-
-
-
-
-

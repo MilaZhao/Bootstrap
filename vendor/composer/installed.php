@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '1449ead55b439412107dca45dcb7de8d1b09b378',
+        'reference' => '20e6ad022619e411f9c292d20e06449a5e3035df',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -418,6 +418,15 @@
             'reference' => 'f55921aa6ca2baf515169808584e9ca3367f46f2',
             'dev_requirement' => true,
         ),
+        'laravel/breeze' => array(
+            'pretty_version' => 'v1.9.0',
+            'version' => '1.9.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laravel/breeze',
+            'aliases' => array(),
+            'reference' => '0d7633380c81d0827f40f6064d38f8884f5c5441',
+            'dev_requirement' => true,
+        ),
         'laravel/framework' => array(
             'pretty_version' => 'v9.8.1',
             'version' => '9.8.1.0',
@@ -433,7 +442,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '1449ead55b439412107dca45dcb7de8d1b09b378',
+            'reference' => '20e6ad022619e411f9c292d20e06449a5e3035df',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(

@@ -73,21 +73,49 @@
                         </div>
                         <p>or use email your account
                         </p>
-                        <form class="form m-auto">
+                        {{-- 登入表單 --}}
+                        <form class="form m-auto" method="POST" action="{{ route('login') }}">
+                            {{-- 金鑰 --}}
+                            @csrf
+                            {{-- Email --}}
                             <div class="input mb-3">
                                 <label for="exampleInputEmail1" class="form-label"></label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                <input type="email" class="form-control" id="exampleInputEmail1" name="email"
                                     aria-describedby="emailHelp" placeholder="Email">
                                 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
                                 </div>
                             </div>
+                            {{-- Password --}}
                             <div class="input mb-3">
                                 <label for="exampleInputPassword1" class="form-label"></label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"
+                                <input type="password" class="form-control" id="exampleInputPassword1" name="password"
                                     placeholder="Password">
                             </div>
 
-                            <a class="forgot_password" href="#">Forgot your password?</a>
+
+
+                            <!-- Remember Me -->
+                            <div class="block mt-4 d-flex justify-content-between">
+                                <label for="remember_me" class="inline-flex items-center">
+                                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+                                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                                </label>
+                                <!-- Forgot your password -->
+                                @if (Route::has('password.request'))
+                                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                                        {{ __('Forgot your password?') }}
+                                    </a>
+                                @endif
+                            </div>
+
+                            {{-- Forgot your password --}}
+                            {{-- <div class="flex items-center justify-end mt-4">
+                                @if (Route::has('password.request'))
+                                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                                        {{ __('Forgot your password?') }}
+                                    </a>
+                                @endif
+                            </div> --}}
 
                             <!-- 記住帳號 checkbox -->
                             <!-- <div class="input_check mb-3 form-check">

@@ -1,7 +1,16 @@
-@extends('bootstrap.template')
+@extends('layouts.app')
+
     @section('pageTitle')
         Banner編輯頁
     @endsection
+
+    <!-- Bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+    <!-- 通用css -->
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    
     <!-- 各頁css -->
     @section('css')
         <link rel="stylesheet" href="{{ asset('css/comment.css') }}">
@@ -13,6 +22,7 @@
         <div class="container">
             <div class="content row m-auto p-5">
                 <h1 class="displayTitle mb-5 padding64">Banner管理</h1>
+                
                 <!-- Comment -->
                 <div class="comment p-0">
 
@@ -21,7 +31,10 @@
                     <div id="section2">
                         <div class="content">
                             <form class="d-flex flex-column" action="/banner/update/{{$banner->id}}" method="post" enctype="multipart/form-data"> <!--需跟route對應--> <!-- 需加上 enctype="multipart/form-data"後台才有辦法存到圖片資料，不然只會有檔名 -->
-                                @csrf <!-- 金鑰 -->
+                                
+                                <!-- 金鑰 -->
+                                @csrf 
+
                                 <div>現在的圖片</div>
                                 <img id="blah" src="{{asset($banner->img_path)}}" alt="">
                                 <label for="banner_img">BANNER圖片上傳</label>
@@ -45,6 +58,12 @@
         </section>
     @endsection
     @section('js')
+       
+    <!-- Bootstrap js -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            egrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        </script>
+        
         <script>
             //選擇檔案後可以即時顯示變更的圖片（按修改banner前）
             banner_img.onchange = evt => {

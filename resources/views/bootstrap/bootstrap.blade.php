@@ -51,6 +51,7 @@
         </section>
         <section id="info">
             <div class="container d-flex flex-column align-items-center">
+                
                 <!-- 文字區塊 -->
                 <div class="textBlock row text-center d-flex justify-content-center pt-5 my-5">
                     <h2 class="mb-4">Raw Denim Heirloom Man Braid</h2>
@@ -61,6 +62,7 @@
                         pug. </p>
                     <div class="divider mt-2" style="width: 5rem; height: 4px"></div>
                 </div>
+
                 <!-- 3 Cards -->
                 <div class="info_cards row">
                     @foreach ( $data3 as $news )

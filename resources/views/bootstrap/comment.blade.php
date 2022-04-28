@@ -44,7 +44,7 @@
                     <!-- 進度條 結束-->
                     <!-- Comment -->
                     <div class="comment p-0">
-                        {{-- 留言貼文 --}}
+                        <!-- 留言貼文 -->
                         @foreach ($commentdata as $comments)
                             <div class="commentBlock padding64">
                                 <div class="info d-inline-flex align-items-end mb-3">
@@ -67,16 +67,19 @@
                                 </div>
 
                                 <div>
-                                    <a href="/comment/delete/{{$comments->id}}">刪除</a>
-                                    <a href="/comment/edit/{{$comments->id}}">編輯</a>
+                                    @auth
+                                        <a href="/comment/delete/{{$comments->id}}">刪除</a>
+                                        <a href="/comment/edit/{{$comments->id}}">編輯</a>
+                                    @endauth
                                 </div>
 
                             </div>
                         @endforeach
 
-                        {{-- 留言 --}}
+                        <!-- 留言 -->
                         <div class="commentWrite p-5 ">
                             <h4 class="commentWriteTitle mb-3">留言</h4>
+                            
                             <form class="form m-auto" action="/comment/save" method="GET"> <!-- 需要跟route對應 -->
                                 <div class="input mb-3">
                                     <label for="name" class="form-label">暱稱</label>
