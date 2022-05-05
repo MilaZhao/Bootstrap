@@ -39,20 +39,36 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/comment">Comment</a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="/banner">Banner管理</a>
-                    </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/ProductPage">Product</a>
+                    </li>
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="/product">Product管理</a>
                     </li> --}}
-                </ul>
+                
                 <div class="d-flex justify-content-center text-end">
-                    <a href="/checkout" class="shoppingCar px-3">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-                    <a href="/login" class="Login" onclick="event.preventDefault(); document.querySelector('#logout_form').submit()">
+                    <a href="/shopping1" class="shoppingCar px-3"><i class="fas fa-shopping-cart"></i></a>
+                    @auth
+                    {{-- 如果帳號是管理者  要顯示後台的連結 --}}
+                    @if (Auth::user()->power == 1)
+                        <a href="/dashboard" class="nav-link">後台</a>
+
+                    @endif
+                        <a class="nav-link">{{ Auth::user()->name}}, 您好</a>
+                        <a class="nav-link" href="" onclick="event.preventDefault(); document.querySelector('#logout_form').submit()">登出</a>
+                        <form method="POST" action="{{ route('logout') }}" hidden id="logout_form">
+                            @csrf
+                        </form>
+                    @endauth
+                    
+                    @guest
+                        <a class="user-icon nav-link " href="/login">登入</a>                   
+                    @endguest
+                    
+
+                    {{-- <a href="/login" class="Login" onclick="event.preventDefault(); document.querySelector('#logout_form').submit()">
                         <i class="fas fa-user-circle ">登入</i>
-                    </a>
+                    </a> --}}
                 </div>
             </div>
         </div>

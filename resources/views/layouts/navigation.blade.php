@@ -23,6 +23,10 @@
                     <x-nav-link :href="'product'" :active="request()->is('product*')">
                         {{ __('Product') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="'/account'" :active="request()->is('account*')">
+                        {{ __('會員管理') }}
+                    </x-nav-link>
                 </div>
             </div>
 

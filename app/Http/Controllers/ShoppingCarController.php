@@ -5,8 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
+
+
 use App\Models\Comment;
 use App\Models\Product;
+
+
+
 
 
 class ShoppingCarController extends Controller
@@ -30,6 +35,15 @@ class ShoppingCarController extends Controller
     public function checkout() {
         return view('bootstrap.checkout');
     }
+
+    public function ProductPage() {
+        $data3 = DB::table('news')->orderby('id',"desc")->take(3)->orderby('id','asc')->get();//抓最新 3 rows
+        $ProductsInRandomOrder = Product::inRandomOrder()->first();//隨機抓
+        $ProductsTake = Product::orderby('id',"desc")->take(8)->get();//抓最新8個
+        
+        return view('bootstrap.ProductPage',compact('data3', 'ProductsInRandomOrder', 'ProductsTake'));
+    }
+
     public function comment() {
         // $commentdata = DB::table('comments')->orderby('id',"desc")->orderby('id','asc')->get();
         $commentdata = Comment::orderby('id',"desc")->get();
@@ -88,6 +102,8 @@ class ShoppingCarController extends Controller
         ]);
         return redirect('/comment');
     }
+
+    
 
 
 }

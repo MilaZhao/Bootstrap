@@ -122,7 +122,8 @@
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label ps-2" for="exampleCheck1">Check me out</label>
                             </div> -->
-                            <button type="submit" class="btn btn-primary mt-3" onclick="location.href='/bootstrap';">Submit</button>
+                            <button type="submit" class="btn btn-primary mt-3" onclick="location.href='/bootstrap';">SIGN IN</button>
+                            <a href="/register" class="ms-5">還有有帳號？註冊</a>
                         </form>
                     </div>
 

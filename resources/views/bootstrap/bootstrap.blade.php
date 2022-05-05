@@ -494,6 +494,9 @@
                         
                         <div class="col">
                             <div class="card wall" style="background-color: #fff;">
+
+                                <a href="/ProductPage">
+
                                 <img src="{{asset($products->img_path)}}" alt="">
                                 {{-- <img src="
                                 @if ($products->img_path == "" || $products->img_path == null)
@@ -502,13 +505,15 @@
                                     {{$products->img_path}}
                                 @endif 
                                 " alt="" > --}}
-
+                                
                                 <div class="card-body">
                                     <h6>{{$products->type}}</h6>
                                     <h5 class="card-title mb-3">{{$products->title}}</h5>
                                     <p class="card-text">${{$products->price}}</p>
 
                                 </div>
+
+                                </a>
                             </div>
                         </div>
 

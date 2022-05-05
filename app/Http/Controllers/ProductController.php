@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Product;
 use App\Models\Product_img;
-use App\Models\FilesController;
 
 
 
@@ -19,6 +18,8 @@ class ProductController extends Controller
         $slot = '';
         return view('bootstrap.product',compact('products','header','slot'));
     }
+
+    
 
     public function create()
     {
