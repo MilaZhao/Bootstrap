@@ -27,6 +27,10 @@
                     <x-nav-link :href="'/account'" :active="request()->is('account*')">
                         {{ __('會員管理') }}
                     </x-nav-link>
+
+                    {{-- <x-nav-link :href="'/checkedout1'" :active="request()->is('checkedout1*')">
+                        {{ __('購物車') }}
+                    </x-nav-link> --}}
                 </div>
             </div>
 

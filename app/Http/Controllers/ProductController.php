@@ -11,6 +11,14 @@ use App\Models\Product_img;
 
 class ProductController extends Controller
 {
+
+    public function ProductPage($id){
+        $ProductsTake = Product::find($id);
+        // dd($ProductsTake->all());
+        return view('bootstrap.ProductPage',compact('ProductsTake'));
+    }
+
+
     public function index() 
     {
         $products = Product::get();

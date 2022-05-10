@@ -22,7 +22,7 @@
                 <!-- 上方進度條 -->
                 <div id="section1" class="container-xxl">
                     <!-- 購物車標題 -->
-                    <div class="shop-car">
+                    <div class="shop-car mb-5">
                         <h3>購物車</h3>
                     </div>
                     <!-- 進度表 -->

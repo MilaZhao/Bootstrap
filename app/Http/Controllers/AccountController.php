@@ -29,7 +29,7 @@ class AccountController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         //Laravel內建的帳號註冊的防呆, 檢查輸入是否錯誤
         $request->validate([
             'name' => ['required', 'string', 'max:255'],

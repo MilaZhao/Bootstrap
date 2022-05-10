@@ -57,14 +57,6 @@
                                         @endif
                                     </td>
 
-                                   
-                                    <td>{{$product->type}}</td>
-                                    <td>{{$product->title}}</td>
-                                    <td>{{$product->price}}</td>
-                                    <td>{{$product->number}}</td>
-                                    <td>{{$product->content}}</td>
-
-
 
                                     <td>
                                         <button class="btn btn-success" onclick="location.href='/account/edit/{{$item->id}}'">編輯</button>

@@ -18,11 +18,12 @@
 
     @section('main')
         <div class="banner .container-fluid">
-            <div class="list-detail">
+            <form action="/shopping4" method="POST" class="list-detail">
+                @csrf
                 <!-- 上方進度條 -->
                 <div id="section1" class="container-xxl">
                     <!-- 購物車標題 -->
-                    <div class="shop-car">
+                    <div class="shop-car mb-5">
                         <h3>購物車</h3>
                     </div>
                     <!-- 進度表 -->
@@ -82,30 +83,30 @@
                             <!--姓名 -->
                             <div class="name">
                                 <div class="mb-1">
-                                    <label for="formGroupExampleInput" class="form-label">
+                                    <label for="name" class="form-label">
                                         <h5>姓名</h5>
                                     </label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput"
+                                    <input type="text" class="form-control" id="name" name="name"
                                         placeholder="千夜未來">
                                 </div>
                             </div>
                             <!-- 電話 -->
                             <div class="tel">
                                 <div class="mb-1">
-                                    <label for="formGroupExampleInput2" class="form-label">
+                                    <label for="phone" class="form-label">
                                         <h5>電話</h5>
                                     </label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput2"
+                                    <input type="text" class="form-control" id="phone" name="phone"
                                         placeholder="0922-520-222">
                                 </div>
                             </div>
                             <!-- 電子郵件 -->
                             <div class="email">
                                 <div class="mb-1">
-                                    <label for="formGroupExampleInput" class="form-label">
+                                    <label for="email" class="form-label">
                                         <h5>E-mail</h5>
                                     </label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput"
+                                    <input type="text" class="form-control" id="email" name="email"
                                         placeholder="kittenIsCute@gmail.com">
                                 </div>
                             </div>
@@ -160,7 +161,7 @@
                         <div class="l-button"><a class="btn btn-primary" href="/shopping2" role="button">上一步</a>
         
                         </div>
-                        <div class="r-button"><a class="btn btn-primary" href="/shopping4" role="button">前往付款</a></div>
+                        <div class="r-button"><button class="btn btn-primary" type="submit" role="button">前往付款</button></div>
                     </div>
                 </div>
             </div>

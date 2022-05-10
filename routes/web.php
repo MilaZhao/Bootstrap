@@ -27,17 +27,19 @@ use App\Http\Controllers\AccountController;
 
 
 // Route::get('/', [NewController::class, 'index']);
-Route::get('/microsoft', [NewController::class, 'microsoft']);
+// Route::get('/microsoft', [NewController::class, 'microsoft']);
 
 //首頁
 Route::get('/', [ShoppingCarController::class, 'bootstrap']);
 Route::get('/checkout', [ShoppingCarController::class, 'checkout']);
 
 // 購物車相關路由
-Route::get('/shopping1', [ShoppingCartController::class, 'step01']);
-Route::get('/shopping2', [ShoppingCartController::class, 'step02']);
-Route::get('/shopping3', [ShoppingCartController::class, 'step03']);
-Route::get('/shopping4', [ShoppingCartController::class, 'step04']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/shopping1', [ShoppingCartController::class, 'step01']);
+    Route::post('/shopping2', [ShoppingCartController::class, 'step02']);
+    Route::post('/shopping3', [ShoppingCartController::class, 'step03']);
+    Route::post('/shopping4', [ShoppingCartController::class, 'step04']);
+});
 
 
 //Comment  部分參考resfuk API  
@@ -75,7 +77,10 @@ Route::prefix('/product')->middleware(['auth'])->group(function(){ //Product管�
 
 
 //Product 前台
-Route::get('/ProductPage', [ShoppingCarController::class, 'ProductPage']);
+Route::get('/ProductPage/{id}', [ProductController::class, 'ProductPage']);
+
+// 接受加入購物車請求
+Route::post('/add_to_cart', [ShoppingCartController::class, 'add_cart']);
 
 
 // 會員管理相關路由

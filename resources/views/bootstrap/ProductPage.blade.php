@@ -206,14 +206,17 @@
                         </span>
                        
                     </div>
+                   
+                        <h1>{{$ProductsTake->title}}</h1>
+                
+                        
 
-                    <h1>THE RIDER - STEEL TABLE LEGS</h1>
-
-                    <div class="price">
-                        <span class="price-old">24.00 £ loc net</span>
-                        <span class="price-new">19.20 £ tac incl.</span>
-                        <span class="price-discount">-20%</span>
-                    </div>
+                        <div class="price">
+                            <span class="price-old">24.00 £ loc net</span>
+                            <span class="price-new">${{$ProductsTake->price}}</span>
+                            <span class="price-discount">-20%</span>
+                        </div>
+                    
                 </div>
 
                 <div class="desc-content">
@@ -229,7 +232,7 @@
                         <p>The price is for one leg</p>
                     </span>
                     <span class="mt-space">
-                        <p>All our legs are handmade, with love, in Montpellier, France!</p>
+                        <p>{{$ProductsTake->content}}</p>
                     </span>
                 </div>
 
@@ -260,8 +263,9 @@
                     </div>
 
                     <div class="item product-type-qty">
+                        
                         <label for="product-type-qty">Qty</label>
-                        <select id="product-type-qty" name="qty">
+                        <select id="qty" name="qty">
                             <option selected>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -269,6 +273,9 @@
                             <option>5</option>
                         </select>
                     </div>
+
+
+                    
                 </div>
 
                 <div class="product-payment">
@@ -337,7 +344,11 @@
                     <span>Total Prices:</span>
                     <div class="">19.20 £</div>
                 </div>
-                <button type="button" name="button" onclick="location.href='/';">ADD TO CART</button>
+                <div class="button">
+                    <input type="number" id="product_id" value="{{$ProductsTake->id}}" hidden>
+                    <a class="btn btn-primary" role="button" id="add_product">加入購物車</a>
+                </div>
+                {{-- <button type="button" name="button" onclick="location.href='/shopping1';">ADD TO CART</button> --}}
             </div>
         </div>
     </section>
@@ -345,6 +356,8 @@
 
 
 @section('js')
+
+    {{-- 商品圖片點擊換照片 --}}
     <script>
         const activeImage = document.querySelector(".product-image .active");
         const productImages = document.querySelectorAll(".product-thumb img");
@@ -352,5 +365,58 @@
             activeImage.src = e.target.src;
         }
         productImages.forEach((image) => image.addEventListener("click", changeImage));
+    </script>
+
+
+    {{-- 加入購物車後的行為,取資料 --}}
+    <script>
+        // const minus = document.querySelector('#minus')
+        // const plus = document.querySelector('#plus')
+        const qty = document.querySelector('#qty')
+        const add_product = document.querySelector('#add_product')
+
+
+        // 商品數量+ & -
+        // minus.onclick = function(){
+        //     // 用parseInt 將字串轉換為數字
+        //     if (parseInt(qty.value) >= 2){
+        //         qty.value = parseInt(qty.value) - 1
+        //     }
+        // }
+        // plus.onclick = function(){
+        //     if (parseInt(qty.value) < {!! $ProductsTake->product_qty !!} ){
+        //         qty.value = parseInt(qty.value) + 1
+        //     }
+        // }
+
+        add_product.onclick = function(){
+            // 在JS建立一個虛擬的form表單
+            var formData = new FormData();
+
+            formData.append('add_qty',   parseInt(qty.value));
+            formData.append('product_id',  {!! $ProductsTake->id !!});
+            formData.append('_token',  '{!! csrf_token() !!}');
+            // 利用fetch將form表單送過去
+            fetch('/add_to_cart', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .catch(error => {
+                alert('新增失敗, 請再嘗試一次')
+                return 'error';
+            })
+            .then(response => {
+
+                if (response != 'error'){
+                    if (response.result == 'success'){
+                        alert('新增成功')
+                    }else{
+                        alert('新增失敗:' + response.message)
+                    }
+                }
+
+            });
+        }
     </script>
 @endsection

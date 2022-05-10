@@ -22,7 +22,7 @@
                 <!-- 上方進度條 -->
                 <div id="section1" class="container-xxl">
                     <!-- 購物車標題 -->
-                    <div class="shop-car">
+                    <div class="shop-car mb-5">
                         <h3>購物車</h3>
                     </div>
                     <!-- 進度表 -->
@@ -137,7 +137,7 @@
                                         </div>
                                         <!-- 商品名稱&訂單編號 -->
                                         <div class="goods-info d-flex justify-content-center align-items-start">
-                                            <div class="name">Cute-kitten-miao-miao</div>
+                                            <div class="name">{{$item->product->product_title}}</div>
                                             <div class="number">#94-koo-tsui</div>
                                         </div>
                                     </div>
@@ -145,9 +145,9 @@
                                     <div class="r-box d-flex align-items-center">
                                         <!-- 商品數量與商品價格 -->
                                         <div class="quantity">
-                                            <p>X1</p>
+                                            <p>{{$item->qty}}</p>
                                         </div>
-                                        <div class="sum-price"> $520.22</div>
+                                        <div class="sum-price"> ${{$item->qty * $item->price}}</div>
                                     </div>
                                 </div>
         
@@ -163,22 +163,22 @@
                             <!--姓名 -->
                             <div class="name d-flex">
                                 <h3>姓名</h3>
-                                <p>12334</p>
+                                <p>{{$order->name}}</p>
                             </div>
                             <!-- 電話 -->
                             <div class="tel d-flex">
                                 <h3>電話</h3>
-                                <p>0912345678</p>
+                                <p>{{$order->phone}}</p>
                             </div>
                             <!-- 電子郵件 -->
                             <div class="email d-flex">
                                 <h3>E-mail</h3>
-                                <p>abc123@gmail.com</p>
+                                <p>{{$order->email}}m</p>
                             </div>
                             <!-- 地址 -->
                             <div class="address d-flex">
                                 <h3>地址</h3>
-                                <p>409 台中市</p>
+                                <p>{{$order->store_address}}</p>
                             </div>
                         </div>
                     </div>
@@ -190,19 +190,19 @@
                         <div class="price-box d-flex">
                             <div class="quantity d-flex justify-content-between">
                                 <h5>數量:</h5>
-                                <span>3</span>
+                                <span>{{$order->product_qty}}</span>
                             </div>
                             <div class="subtotal d-flex justify-content-between">
                                 <h5>小計:</h5>
-                                <span>520.22</span>
+                                <span>${{$order->subtotal}}</span>
                             </div>
                             <div class="shipping-fee d-flex justify-content-between">
                                 <h5>運費:</h5>
-                                <span>520.22</span>
+                                <span>{{$order->shipping_fee}}</span>
                             </div>
                             <div class="total d-flex justify-content-between">
                                 <h5>總計:</h5>
-                                <span>520.22</span>
+                                <span>{{$order->total}}</span>
                             </div>
                         </div>
                     </div>

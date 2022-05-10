@@ -495,7 +495,7 @@
                         <div class="col">
                             <div class="card wall" style="background-color: #fff;">
 
-                                <a href="/ProductPage">
+                                <a href="/ProductPage/{{$products->id}}">
 
                                 <img src="{{asset($products->img_path)}}" alt="">
                                 {{-- <img src="

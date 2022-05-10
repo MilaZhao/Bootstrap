@@ -550,6 +550,7 @@ class ComposerStaticInitb150e3b9bac6efc3691d40ac6d5a0875
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\AccountController' => __DIR__ . '/../..' . '/app/Http/Controllers/AccountController.php',
         'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmablePasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmablePasswordController.php',
         'App\\Http\\Controllers\\Auth\\EmailVerificationNotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/EmailVerificationNotificationController.php',
@@ -564,6 +565,7 @@ class ComposerStaticInitb150e3b9bac6efc3691d40ac6d5a0875
         'App\\Http\\Controllers\\NewController' => __DIR__ . '/../..' . '/app/Http/Controllers/NewController.php',
         'App\\Http\\Controllers\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductController.php',
         'App\\Http\\Controllers\\ShoppingCarController' => __DIR__ . '/../..' . '/app/Http/Controllers/ShoppingCarController.php',
+        'App\\Http\\Controllers\\ShoppingCartController' => __DIR__ . '/../..' . '/app/Http/Controllers/ShoppingCartController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\AccountPower' => __DIR__ . '/../..' . '/app/Http/Middleware/AccountPower.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
