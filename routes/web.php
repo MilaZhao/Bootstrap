@@ -83,6 +83,7 @@ Route::get('/ProductPage/{id}', [ProductController::class, 'ProductPage']);
 
 // 接受加入購物車請求
 Route::post('/add_to_cart', [ShoppingCartController::class, 'add_cart']);
+Route::post('/delete_from_cart/{id}', [ShoppingCartController::class, 'delete_cart']);
 
 
 // 會員管理相關路由

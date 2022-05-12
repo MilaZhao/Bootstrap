@@ -59,6 +59,13 @@ class ShoppingCartController extends Controller
 
     }
 
+    // 刪除購物車品項
+    public function delete_cart($id){
+
+        ShoppingCart::find($id)->delete();
+        return redirect('/shopping1');
+    }
+
 
     public function step01(){
 
@@ -209,5 +216,7 @@ class ShoppingCartController extends Controller
         $order = Order::find($id);
         return view('shopping.checkedout4',compact('order'));
     }
+
+    
     
 }

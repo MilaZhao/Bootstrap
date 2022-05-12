@@ -1,65 +1,70 @@
 @extends('layouts.app')
 
-    @section('pageTitle')
-        確認訂單
-    @endsection
-    
-    <!-- Bootstrap css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+@section('pageTitle')
+    確認訂單
+@endsection
+
+<!-- Bootstrap css -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    
-    <!-- 通用css -->
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    
-    <!-- 各頁css -->
-    @section('css')
-        <link rel="stylesheet" href="{{ asset('css/checkedout3.css') }}">
 
-        <style>
-            .border-bottom{
-                border-width: 3px !important;
-                border-color: gray !important;
-            }
-            .banner_img{
-                width: 250px;
-            }
-            main #section1{
-                height: unset;
-            }
-            .btn, .btn-success{
-                background-color:unset;
-                border-color:unset;
-                /* color: #f3f4f6; */
-            }
-            .btn-success:hover{
-                background-color: unset;
-                border-color:unset;
-                /* color: #f3f4f6; */
-            }
-            .btn-success:active{
-                background-color: unset;
-                border-color:unset;
-                /* color: #f3f4f6; */
-            }
-            span{
-                color: #4856fd;
-            }
-            #order_list{
-                width: 100%;
-                text-align: center
-            }
-           .text {
-               text-align: center;
-           }
-           
-           
-            
+<!-- 通用css -->
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
+<!-- 各頁css -->
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/checkedout3.css') }}">
 
-        </style>
-    @endsection
+    <style>
+        .border-bottom {
+            border-width: 3px !important;
+            border-color: gray !important;
+        }
 
-    @section('main')
+        .banner_img {
+            width: 250px;
+        }
+
+        main #section1 {
+            height: unset;
+        }
+
+        .btn,
+        .btn-success {
+            background-color: unset;
+            border-color: unset;
+            /* color: #f3f4f6; */
+        }
+
+        .btn-success:hover {
+            background-color: unset;
+            border-color: unset;
+            /* color: #f3f4f6; */
+        }
+
+        .btn-success:active {
+            background-color: unset;
+            border-color: unset;
+            /* color: #f3f4f6; */
+        }
+
+        span {
+            color: #4856fd;
+        }
+
+        #order_list {
+            width: 100%;
+            text-align: center
+        }
+
+        .text {
+            text-align: center;
+        }
+
+    </style>
+@endsection
+
+@section('main')
     <div class="banner container-fluid">
         <div class="list-detail">
             <!-- 上方留言內容 -->
@@ -82,44 +87,56 @@
                     </thead>
                     <tbody>
                         @foreach ($orders as $item)
-                        <tr>
-                            <td>{{$item->id}}</td>
-                            <td>{{$item->name}}</td>
-                            <td>{{$item->email}}</td>
-                            <td>{{$item->total}}</td>
-                            <td>
-                                {{-- 1->訂單成立(未付款), 2->已付款, 3->已出貨, 4->已結單, 5->已取消 --}}
-                                @if ($item->status == 1)
-                                    訂單成立(未付款)
-                                @elseif ($item->status == 2)
-                                    已付款
-                                @elseif ($item->status == 3)
-                                    已出貨
-                                @elseif ($item->status == 4)
-                                    已結單
-                                @else
-                                    已取消
-                                @endif
-                            </td>
-    
-                            <td>
-                                <button class="btn btn-success" onclick="location.href='/order/edit/{{$item->id}}'"> <span>修改訂單狀態</span> </button>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>{{ $item->id }}</td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->email }}</td>
+                                <td>{{ $item->total }}</td>
+                                <td>
+                                    {{-- 1->訂單成立(未付款), 2->已付款, 3->已出貨, 4->已結單, 5->已取消 --}}
+                                    @if ($item->status == 1)
+                                        訂單成立(未付款)
+                                    @elseif ($item->status == 2)
+                                        已付款
+                                    @elseif ($item->status == 3)
+                                        已出貨
+                                    @elseif ($item->status == 4)
+                                        已結單
+                                    @else
+                                        已取消
+                                    @endif
+                                </td>
+
+                                <td>
+                                    <button class="btn btn-success"
+                                        onclick="location.href='/order/edit/{{ $item->id }}'"> <span>修改訂單狀態</span>
+                                    </button>
+                                </td>
+                            </tr>
                         @endforeach
-    
+
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    @endsection
+@endsection
 
-    @section('js')
+@section('js')
+    <!-- Bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        egrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-         <!-- Bootstrap js -->
-         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            egrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#order_list').DataTable();
+        });
+    </script>
+
+    @if (session('success'))
+        <script>
+            alert(" {{ session('success') }}  ")
         </script>
-        
-    @endsection
+    @endif
+@endsection

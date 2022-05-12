@@ -207,10 +207,7 @@ main .banner .list-detail {
     padding-bottom: 30px;
     margin-bottom: 30px;
   }
-  main .banner .list-detail #section2 .order-list .first-item .l-box {
-    width: 30%;
-    background-color: #f3f4f6;
-  }
+
   main .banner .list-detail #section2 .order-list .first-item .l-box .goods-img {
     width: 70px;
     height: 70px;
@@ -228,7 +225,6 @@ main .banner .list-detail {
     color: #9ca3af;
   }
   main .banner .list-detail #section2 .order-list .first-item .r-box {
-    width: 150px;
     display: flex;
     justify-content: space-between;
     font-size: 0.7rem;
@@ -285,6 +281,14 @@ main .banner .list-detail {
   .btn {
     padding: 8px 32px;
     background-color: #4856fd;
+  }
+
+  .sum-price{
+    padding: 0 36px;
+  }
+  .btn-danger{
+    color: #dc3545;
+    background-color:unset
   }
   
   /*# sourceMappingURL=checkedout1.css.map */
