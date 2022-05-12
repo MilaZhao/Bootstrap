@@ -74,82 +74,39 @@
                 <!-- 中間內容：訂單資訊確認 -->
                 <div id="section2">
                     <!-- 訂單成立 -->
-                    <div class="order-title">
+                    <div class="order-title mt-5 mb-5">
                         <h1>訂單成立</h1>
                     </div>
                     <!-- 訂單明細 -->
                     <div class="order-list">
-                        <div class="list-title">
-                            <h3>訂單明細</h3>
-                        </div>
+                        <div class="list-title"> <h3>訂單明細</h3> </div>
+                       
                         <div class="order-content">
                             <div class="order-list">
-                                <div class="first-item d-flex justify-content-between">
-                                    <!-- 訂單內容左方區塊 -->
-                                    <div class="l-box d-flex">
-                                        <!-- 商品照 -->
-                                        <div class="goods-img">
-                                            <img src="{{asset('img/pic01.jpeg')}}" alt="Goods-Photo">
+                                @foreach ( $order->detail as $item )
+                                    <div class="first-item d-flex justify-content-between">
+                                        <!-- 訂單內容左方區塊 -->
+                                        <div class="l-box d-flex">
+                                            <!-- 商品照 -->
+                                            <div class="goods-img">
+                                                <img src="{{ $item->product->img_path }}" alt="Goods-Photo">
+                                            </div>
+                                            <!-- 商品名稱&訂單編號 -->
+                                            <div class="goods-info d-flex justify-content-center align-items-start">
+                                                <div class="name">{{ $item->product->product_title }}</div>
+                                                <div class="number">{{ $item->product->product_detail }}</div>
+                                            </div>
                                         </div>
-                                        <!-- 商品名稱&訂單編號 -->
-                                        <div class="goods-info d-flex justify-content-center align-items-start">
-                                            <div class="name">Cute-kitten-miao-miao</div>
-                                            <div class="number">#94-koo-tsui</div>
-                                        </div>
-                                    </div>
-                                    <!-- 訂單內容右方區塊 -->
-                                    <div class="r-box d-flex align-items-center">
-                                        <!-- 商品數量與商品價格 -->
-                                        <div class="quantity">
-                                            <p>X1</p>
-                                        </div>
-                                        <div class="sum-price"> $520.22</div>
-                                    </div>
-                                </div>
-                                <div class="second-item d-flex justify-content-between">
-                                    <!-- 訂單內容左方區塊 -->
-                                    <div class="l-box d-flex">
-                                        <!-- 商品照 -->
-                                        <div class="goods-img">
-                                            <img src="{{asset('img/pic01.jpeg')}}" alt="Goods-Photo">
-                                        </div>
-                                        <!-- 商品名稱&訂單編號 -->
-                                        <div class="goods-info d-flex justify-content-center align-items-start">
-                                            <div class="name">Cute-kitten-miao-miao</div>
-                                            <div class="number">#94-koo-tsui</div>
+                                        <!-- 訂單內容右方區塊 -->
+                                        <div class="r-box d-flex align-items-center">
+                                            <!-- 商品數量與商品價格 -->
+                                            <div class="quantity">
+                                                <p>{{ $item->qty }}</p>
+                                            </div>
+                                            <div class="sum-price"> ${{ $item->qty * $item->price }} </div>
                                         </div>
                                     </div>
-                                    <!-- 訂單內容右方區塊 -->
-                                    <div class="r-box d-flex align-items-center">
-                                        <!-- 商品數量與商品價格 -->
-                                        <div class="quantity">
-                                            <p>X1</p>
-                                        </div>
-                                        <div class="sum-price"> $520.22</div>
-                                    </div>
-                                </div>
-                                <div class="third-item d-flex justify-content-between">
-                                    <!-- 訂單內容左方區塊 -->
-                                    <div class="l-box d-flex">
-                                        <!-- 商品照 -->
-                                        <div class="goods-img">
-                                            <img src="{{asset('img/pic01.jpeg')}}" alt="Goods-Photo">
-                                        </div>
-                                        <!-- 商品名稱&訂單編號 -->
-                                        <div class="goods-info d-flex justify-content-center align-items-start">
-                                            <div class="name">{{$item->product->product_title}}</div>
-                                            <div class="number">#94-koo-tsui</div>
-                                        </div>
-                                    </div>
-                                    <!-- 訂單內容右方區塊 -->
-                                    <div class="r-box d-flex align-items-center">
-                                        <!-- 商品數量與商品價格 -->
-                                        <div class="quantity">
-                                            <p>{{$item->qty}}</p>
-                                        </div>
-                                        <div class="sum-price"> ${{$item->qty * $item->price}}</div>
-                                    </div>
-                                </div>
+                                @endforeach
         
                             </div>
                         </div>
@@ -173,7 +130,7 @@
                             <!-- 電子郵件 -->
                             <div class="email d-flex">
                                 <h3>E-mail</h3>
-                                <p>{{$order->email}}m</p>
+                                <p>{{$order->email}}</p>
                             </div>
                             <!-- 地址 -->
                             <div class="address d-flex">
@@ -211,9 +168,6 @@
                 <div id="section4">
                     <!-- 功能按鈕 -->
                     <div class="button-box d-flex justify-content-end">
-                        <div class="l-button"><a class="btn btn-primary" href="/" role="button"><i
-                                    class="fa-solid fa-arrow-left"></i>返回購物</a>
-                        </div>
                         <div class="r-button">
                             <a class="btn btn-primary" href="/" role="button">返回首頁</a>
                         </div>
@@ -230,26 +184,4 @@
             egrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
         </script>
 
-        <script>
-           
-
-            //使用fetch 刪除 ProductEdit管理頁 的次要圖片
-            function delete_img(id){
-                // 準備表單以及內部的資料
-                let formData = new FormData();
-                formData.append("_method", 'DELETE');
-                formData.append("_token", '{{ csrf_token() }}');
-
-                //將準備好的表單籍由fetch送到後台
-                fetch("/product/delete_img/"+id,{
-                    method:'POST',
-                    body:formData
-                    }).then(function(response) {
-                        //成功從資料庫删除資料後，將自己的HTML元素消除
-                        let element = document.querySelector('#sup_img'+id)
-                        element.parentNode.removeChild(element);
-                })
-            }
-            //備註 fetch 不會自動更新網頁
-        </script>
     @endsection

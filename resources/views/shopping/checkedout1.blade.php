@@ -17,9 +17,10 @@
     @endsection
 
     @section('main')
+    
         <div class="banner .container-fluid">
             <div class="list-detail">
-
+                
                 <!-- 上方進度條 -->
                 <div id="section1" class="container-xxl">
                     <!-- 購物車標題 -->
@@ -72,84 +73,95 @@
                         </div>
                     </div>
                 </div>
-                <!-- 中間訂單資訊 -->
-                <div id="section2">
-                    <!-- 訂單明細 -->
-                    <div class="list-title">
-                        <h4>訂單明細</h4>
-                    </div>
-                    <!-- 訂單內容 -->
-                    <div class="order-list">
-                        @foreach ($shopping as $item )
-                        <div class="first-item d-flex justify-content-between">
-                            <!-- 訂單內容左方區塊 -->
-                            <div class="l-box d-flex">
-                                <!-- 商品照 -->
-                                <div class="goods-img">
-                                    <img src="{{ $item->product->img_path }}" alt="Goods-Photo">
-                                </div>
-                                <!-- 商品名稱&訂單編號 -->
-                                <div class="goods-info d-flex justify-content-center align-items-start">
-                                    <div class="name">{{$item->product->product_name}}</div>
-                                    <div class="number">{{$item->product->product_detail}}</div>
-                                </div>
-                            </div>
-                            <!-- 訂單內容右方區塊 -->
-                            <div class="r-box d-flex align-items-center">
-                                <!-- 商品數量與商品價格 -->
-                                <div class="quantity">
-                                    <i class="fa-solid fa-plus"></i>
-                                    <input type="number" name="qty[]" value="{{$item->qty}}">
-                                    <i class="fa-solid fa-plus"></i>
-                                </div>
-                                <div class="sum-price">${{$item->qty * $item->product->product_price}}</div>
-                            </div>
+                
+                
+                
+                    <!-- 中間訂單資訊 -->
+                    <div id="section2">
+                        <!-- 訂單明細 -->
+                        <div class="list-title">
+                            <h4>訂單明細</h4>
                         </div>
-                       @endforeach
-
-                    </div>
-                </div>
-
-
-
-
-                <!-- 下方價格 -->
-                <div id="section3">
-                    <div class="name-no-idea">
-                        <!-- 價格明細 -->
-                        <div class="price-box d-flex">
-                            <div class="quantity d-flex justify-content-between">
-                                <h5>數量:</h5>
-                                <span>{{ count($shopping) }}</span>
+                        <!-- 訂單內容 -->
+                        <div class="order-list">
+                            @foreach ($shopping as $item )
+                            <div class="first-item d-flex justify-content-between">
+                                <!-- 訂單內容左方區塊 -->
+                                <div class="l-box d-flex">
+                                    <!-- 商品照 -->
+                                    <div class="goods-img">
+                                        <img src="{{ $item->product->img_path }}" alt="Goods-Photo">
+                                    </div>
+                                    <!-- 商品名稱&訂單編號 -->
+                                    <div class="goods-info d-flex justify-content-center align-items-start">
+                                        <div class="name">{{$item->product->title}}</div>
+                                        <div class="number">{{$item->product->content}}</div>
+                                    </div>
+                                </div>
+                                <!-- 訂單內容右方區塊 -->
+                                <div class="r-box d-flex align-items-center">
+                                    <!-- 商品數量與商品價格 -->
+                                    <div class="quantity">
+                                        <i class="fa-solid fa-plus"></i>
+                                        <input form="formtext" type="number" name="qty[]" value="{{$item->qty}}">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </div>
+                                    <div class="sum-price">${{$item->qty * $item->product->price}}</div>
+                                </div>
                             </div>
-                            <div class="subtotal d-flex justify-content-between">
-                                <h5>小計:</h5>
-                                <span>${{ $subtotal }}</span>
-                            </div>
-                            <div class="shipping-fee d-flex justify-content-between">
-                                <h5>運費:</h5>
-                                <span>520.22</span>
-                            </div>
-                            <div class="total d-flex justify-content-between">
-                                <h5>總計:</h5>
-                                <span>${{$subtotal+100}}</span>
-                            </div>
+                        @endforeach
+
                         </div>
                     </div>
-                </div>
-                <!-- 底部按鈕 -->
-                <div id="section4">
-                    <!-- 功能按鈕 -->
-                    <div class="button-box d-flex justify-content-between">
-                        <div class="l-button"><a class="btn btn-primary" href="/ProductPage/{{$ProductsTake->id}}" role="button"><i
-                                    class="fa-solid fa-arrow-left"></i>返回購物</a>
+
+                    <!-- 下方價格 -->
+                    <div id="section3">
+                        <div class="name-no-idea">
+                            <!-- 價格明細 -->
+                            <div class="price-box d-flex">
+                                <div class="quantity d-flex justify-content-between">
+                                    <h5>數量:</h5>
+                                    <span>{{ count($shopping) }}</span>
+
+                                </div>
+                                <div class="subtotal d-flex justify-content-between">
+                                    <h5>小計:</h5>
+                                    <span>${{ $subtotal }}</span>
+                                </div>
+                                
+                                <div class="total d-flex justify-content-between">
+                                    <h5>總計:</h5>
+                                    <span>${{ $subtotal }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 底部按鈕 -->
+                    <div id="section4">
+                        <!-- 功能按鈕 -->
+                        <div class="button-box d-flex justify-content-between">
+                            <div class="l-button"><a class="btn btn-primary" href="#" role="button"><i
+                                        class="fa-solid fa-arrow-left"></i>返回購物</a>
+                                        {{-- href="/ProductPage/{{$products->id}}" --}}
+                            </div>
+
+                            <!-- form表單 -->
+                            <form id="formtext" method="POST" action="/shopping2" >
+                                @csrf
+                            </form>
+
+                             <!-- submit -->
+                            <label for="submit">
+                                <input type="submit" form="formtext" id="submit" value="下一步" class="btn btn-primary">
+                            </label>
+                        
 
                         </div>
-                        <div class="r-button"><a class="btn btn-primary" href="/shopping2" role="button">下一步</a></div>
                     </div>
-                </div>
+                    
             </div>
         </div>
+    
     @endsection
 
     @section('js')
@@ -160,25 +172,42 @@
         </script>
 
         <script>
-           
+            const minus = document.querySelectorAll('.fa-minus')
+            const plus = document.querySelectorAll('.fa-plus')
+            const qty = document.querySelectorAll('.qty')
+            const sum_price = document.querySelectorAll('.sum_price')
+            const number = document.querySelectorAll('.number')
 
-            //使用fetch 刪除 ProductEdit管理頁 的次要圖片
-            function delete_img(id){
-                // 準備表單以及內部的資料
-                let formData = new FormData();
-                formData.append("_method", 'DELETE');
-                formData.append("_token", '{{ csrf_token() }}');
+            //小計與總計的元素
+            const subtotal = document.querySelector('.subtotal span')
+            const total = document.querySelector('.total span')
 
-                //將準備好的表單籍由fetch送到後台
-                fetch("/product/delete_img/"+id,{
-                    method:'POST',
-                    body:formData
-                    }).then(function(response) {
-                        //成功從資料庫删除資料後，將自己的HTML元素消除
-                        let element = document.querySelector('#sup_img'+id)
-                        element.parentNode.removeChild(element);
-                })
+
+            for (let i = 0; i < minus.length; i++) {
+                minus[i].onclick = function(){
+
+                    if (parseInt(qty[i].value) > 1) {
+                        qty[i].value = parseInt(qty[i].value) - 1
+                        sum_price[i].innerHTML = '$' + (parseInt(number[i].dataset.product_price) * parseInt(qty[i].value))
+                    }
+
+                    //計算所有品項的金額並加總
+                    var sum
+                    for (let j = 0; j < array.length; j++) {
+                        sum += parseInt(number[j].dataset.product_price) * parseInt(qty[j].value)
+                    }
+                    subtotal.innerHTML = 
+                }
+                plus[i].onclick = function(){
+
+                    if (parseInt(qty[i].value) < parseInt(number[i].dataset.product_qty)) {
+                        qty[i].value = parseInt(qty[i].value) +1 
+                        sum_price[i].innerHTML = '$' + (parseInt(number[i].dataset.product_price) * parseInt(qty[i].value))
+                    }
+                }
+                
             }
-            //備註 fetch 不會自動更新網頁
+
         </script>
+
     @endsection

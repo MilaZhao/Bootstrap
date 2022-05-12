@@ -1,12 +1,14 @@
 main .banner {
-  background-color: #d1d5db;
-  padding: 3% 23%;
+  background-color: #F3f4f6;
+  padding: 96px 0px;
+  
 }
 main .banner .list-detail {
-
-  background-color: #f3f4f6;
+  max-width: 64rem;
+  margin: auto;
+  border-radius: 2em;
+  background-color: #ffffff;
   padding: 4% 4%;
-  border-radius: 10px;
 }
 main .banner .list-detail #section1 {
   padding: 0;
@@ -21,8 +23,11 @@ main .banner .list-detail #section1 .progress-container {
 main .banner .list-detail #section1 .progress-container .progress {
   height: 100px;
   width: 100%;
-  border-bottom: 1px solid #e5e7eb;
-  background-color: #f3f4f6;
+  /* border-bottom: 1px solid #e5e7eb;
+  background-color: #f3f4f6; */
+}
+.progress{
+  background-color: unset;
 }
 main .banner .list-detail #section1 .progress-container .progress li {
   font-size: 1rem;
@@ -291,4 +296,13 @@ main .banner .list-detail #section4 .button-box .r-button .btn {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.btn {
+  padding: 8px 32px;
+  background-color: #4856fd;
+}
+.tittle h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 20px 0;
 }

@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Models\Product_img;
 use App\Models\ShoppingCart;
+use App\Models\Order;
+use App\Models\OrderDetail;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderComplete;
+
+
 
 
 
@@ -64,8 +70,9 @@ class ShoppingCartController extends Controller
         $subtotal = 0;
         // dd($subtotal);
         foreach ($shopping as $value) {
-            $subtotal += $value->qty * $value->product->product_price;
+            $subtotal += $value->qty * $value->product->price;
         }
+        // dd($value->product->product_price);
 
         // for ($i=0; $i < count($shopping); $i++) {
         //     $item = $shopping[$i]->product;
@@ -86,38 +93,50 @@ class ShoppingCartController extends Controller
 
 
     public function step02(Request $request){
-         // session的使用方法 使用 鍵與值的方式將想帶到下一頁的資料寫進去
-         session([
-            // key and value; (鍵 與 值)
-            'amount' => $request->qty,
-        ]);
+
+         // 不使用session 直接將新數量寫入購物車(待買清單)的資料表
+         $shopping = ShoppingCart::where('user_id', Auth::id())->get();
+        //  dd($request->qty);
+         
+         //事先將新的數量更新至資料表中
+         foreach ($shopping as $key => $item) {
+             $item->qty = $request->qty[$key];
+             $item->save();
+         }
+       
+
         return view('shopping.checkedout2');
     }
 
 
     public function step03(Request $request){
+    
         session([
             // key and value; (鍵 與 值)
             'pay' => $request->pay,
             'deliver' => $request->deliver,
-
         ]);
-        return view('shopping.checkedout3');
+        
+        $deliver = $request->deliver;
+        // dd($deliver);
+
+        return view('shopping.checkedout3', compact('deliver'));
     }
 
 
     public function step04(Request $request){
 
-        dump(session()->all());
-        dd($request->all());
+        //dump(session()->all());
+        //dd($request->all());
 
+        
         //為了計算單價 將購物車根據使用者的id抓出來
-        $merch = ShoppingCart::where('user_id',$user)->get();
-
-
-        //如果購物車的數量有在第一步驟更新到最新
+        $merch = ShoppingCart::where('user_id',Auth::id())->get();
         $subtotal = 0;
-        foreach ($shopping as  $value) {
+        // dd($merch);
+        
+        //如果購物車的數量有在第一步驟更新到最新
+         foreach ($merch as $value) {
             $subtotal += $value->qty * $value->product->product_price;
         }
 
@@ -129,42 +148,61 @@ class ShoppingCartController extends Controller
         }
 
 
-        Order::create([
+        $order = Order::create([
             'subtotal' => $subtotal,
             'shipping_fee' => $fee,
             'total' => $subtotal + $fee,
-            'product_qty' => count(session()->get('amount')),
+            'product_qty' => count($merch),
             'name' => $request->name,
             'phone' => $request->phone,
             'email' => $request->email,          
             'pay_way' => session()->get('pay'),
             'shipping_way' => session()->get('deliver'),      
             'status' => 1,
-            'user_id' => Ayth::id(),
+            'user_id' => Auth::id(),
         ]);
-
+        
+        
         if ($order->shipping_way == 1) {
+    
             //如果運送方式(shipping_ way）是1 代表是黑貓宅急便 地址要填入address
             $order->address = $request->code.$request->city.$request->address;
+            // dd($order);
         }else{
             //如果運送方式(shipping_ way)是2代表是店到店 地址要填入store_address
             $order->store_address = $request->code.$request->city.$request->address;
         }
+        
      
         //任何改動的資料都需要儲存資料 save()
         $order->save();
-        dd($order);
+        // dd($order);
 
         foreach ($merch as $key => $value) {
             OrderDetail::create([
+               
                 'product_id' => $value->product->id,
                 'qty' => $value->qty,
-                'price' => $value->product->product_pricr,
+                'price' => $value->product->price,
                 'order_id' => $value->id,
             ]);
+            
         }
 
-        return redirect('showorder/' .$id);
+
+        // 訂單建立成功, 將購物車資料清除
+        ShoppingCart::where('user_id', Auth::id())->delete();
+        //訂單建立成功，寄信通知使用者
+
+        $data = [
+            'order_id' => $order->id,
+            'user_name'=>Auth::user()->name,
+            'subject'=>'來自ＸＸ通知'
+        ];
+
+        Mail::to(Auth::user()->email)->send(new OrderComplete($data));
+    
+        return redirect('/show_order/'.$order->id);
     }
 
     public function  show_order($id){

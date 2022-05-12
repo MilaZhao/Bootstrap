@@ -18,14 +18,13 @@
 
     @section('main')
         <div class="banner .container-fluid">
-            <form action="/shopping4" method="POST" class="list-detail">
-                @csrf
+            <div class="list-detail">
+                {{-- <form action="/shopping4" method="POST" class="list-detail"> --}}
+                {{-- @csrf --}}
                 <!-- 上方進度條 -->
                 <div id="section1" class="container-xxl">
                     <!-- 購物車標題 -->
-                    <div class="shop-car mb-5">
-                        <h3>購物車</h3>
-                    </div>
+                    <div class="shop-car mb-5"> <h3>購物車</h3> </div>
                     <!-- 進度表 -->
                     <div class="progress-container">
                         <div class="progress">
@@ -86,8 +85,8 @@
                                     <label for="name" class="form-label">
                                         <h5>姓名</h5>
                                     </label>
-                                    <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="千夜未來">
+                                    <input type="text" form="formtext" class="form-control" id="name" name="name"
+                                        placeholder="請輸入姓名">
                                 </div>
                             </div>
                             <!-- 電話 -->
@@ -96,8 +95,8 @@
                                     <label for="phone" class="form-label">
                                         <h5>電話</h5>
                                     </label>
-                                    <input type="text" class="form-control" id="phone" name="phone"
-                                        placeholder="0922-520-222">
+                                    <input type="text" form="formtext" class="form-control" id="phone" name="phone"
+                                        placeholder="0912345678">
                                 </div>
                             </div>
                             <!-- 電子郵件 -->
@@ -106,24 +105,26 @@
                                     <label for="email" class="form-label">
                                         <h5>E-mail</h5>
                                     </label>
-                                    <input type="text" class="form-control" id="email" name="email"
-                                        placeholder="kittenIsCute@gmail.com">
+                                    <input type="text" form="formtext" class="form-control" id="email" name="email"
+                                        placeholder="abc123@company.com">
                                 </div>
                             </div>
                             <!--戶籍資料 -->
                             <div class="address">
                                 <div class="mb-1">
-                                    <label for="formGroupExampleInput2" class="form-label">
-                                        <h5>地址</h5>
+                                    <label for="address" class="form-label">
+                                        <h5>
+                                            @if ($deliver == 1)
+                                            地址
+                                            @else
+                                            超商地址
+                                            @endif
+                                        </h5>
                                     </label>
                                     <div class="type-box">
-                                        <input type="text" class="form-control-city" id="formGroupExampleInput2"
-                                            placeholder="城市">
-        
-                                        <input type="text" class="form-control-code" id="formGroupExampleInput2"
-                                            placeholder="郵遞區號">
-                                        <input type="text" class="form-control-address" id="formGroupExampleInput2"
-                                            placeholder="地址">
+                                        <input type="text" form="formtext" class="form-control-city" id="address" name="city" placeholder="城市">
+                                        <input type="text" form="formtext" class="form-control-code" id="code" placeholder="郵遞區號">
+                                        <input type="text" form="formtext" class="form-control-address" name="address" placeholder="地址">
                                     </div>
                                 </div>
                             </div>
@@ -158,10 +159,17 @@
                 <div id="section4">
                     <!-- 功能按鈕 -->
                     <div class="button-box d-flex justify-content-between">
-                        <div class="l-button"><a class="btn btn-primary" href="/shopping2" role="button">上一步</a>
-        
-                        </div>
-                        <div class="r-button"><button class="btn btn-primary" type="submit" role="button">前往付款</button></div>
+                        <div class="l-button"><a class="btn btn-primary" href="/shopping2" role="button">上一步</a></div>
+
+                        <!-- form表單  id 須要對應 input 的 form="formtext"-->
+                        <form id="formtext" method="POST" action="/shopping4" > 
+                            @csrf
+                       </form>
+
+                       <!-- submit -->
+                       <label for="submit">
+                           <input type="submit" form="formtext" id="submit" value="前往付款" class="btn btn-primary">
+                       </label>
                     </div>
                 </div>
             </div>
@@ -174,27 +182,5 @@
          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             egrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
         </script>
-
-        <script>
-           
-
-            //使用fetch 刪除 ProductEdit管理頁 的次要圖片
-            function delete_img(id){
-                // 準備表單以及內部的資料
-                let formData = new FormData();
-                formData.append("_method", 'DELETE');
-                formData.append("_token", '{{ csrf_token() }}');
-
-                //將準備好的表單籍由fetch送到後台
-                fetch("/product/delete_img/"+id,{
-                    method:'POST',
-                    body:formData
-                    }).then(function(response) {
-                        //成功從資料庫删除資料後，將自己的HTML元素消除
-                        let element = document.querySelector('#sup_img'+id)
-                        element.parentNode.removeChild(element);
-                })
-            }
-            //備註 fetch 不會自動更新網頁
-        </script>
+        
     @endsection

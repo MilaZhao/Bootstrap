@@ -243,6 +243,9 @@ button:focus {
 
 .wall img {
   padding: 16px;
+  width: 100%;
+  height: 300px;
+  background-size: cover;
 }
 
 .contact_input {
@@ -268,4 +271,6 @@ button:focus {
 #footer_company {
     text-align: center;
   }
+
+
 }/*# sourceMappingURL=index.css.map */

@@ -80,16 +80,16 @@
                         </div>
                         <div class="content">
                             <div class="first-choice d-flex align-items-center">
-                                <input type="radio" name="pay" id="">
-                                <p>信用卡付款</p>
+                                <input type="radio" name="pay" id="magic_card" form="formtext" value="1">
+                                 <label for="magic_card">信用卡付款</label>
                             </div>
-                            <div class="second-choice d-flex align-items-center">
-                                <input type="radio" name="pay" id="">
-                                <p>網路 ATM</p>
+                            <div class="first-choice d-flex align-items-center">
+                                <input type="radio" name="pay" id="atm" form="formtext" value="2">
+                                 <label for="atm">網路 ATM</label>
                             </div>
-                            <div class="third-choice d-flex align-items-center">
-                                <input type="radio" name="pay" id="">
-                                <p>超商代碼</p>
+                            <div class="first-choice d-flex align-items-center">
+                                <input type="radio" name="pay" id="store" form="formtext" value="3">
+                                <label for="store">超商代碼</label>
                             </div>
                         </div>
                     </div>
@@ -100,12 +100,12 @@
                         </div>
                         <div class="content">
                             <div class="first-choice d-flex align-items-center">
-                                <input type="radio" name="deliver" id="">
-                                <p>黑貓宅配</p>
+                                <input type="radio" name="deliver" id="yamato" form="formtext" value="1">
+                                <label for="yamato"> 黑貓宅配 </label>
                             </div>
-                            <div class="second-choice d-flex align-items-center">
-                                <input type="radio" name="deliver" id="">
-                                <p>超商店到店</p>
+                            <div class="first-choice d-flex align-items-center">
+                                <input type="radio" name="deliver" id="shop" form="formtext" value="2" >
+                                <label for="shop"> 超商店到店 </label>
                             </div>
                         </div>
                     </div>
@@ -118,11 +118,11 @@
                         <div class="price-box d-flex">
                             <div class="quantity d-flex justify-content-between">
                                 <h5>數量:</h5>
-                                <span>3</span>
+                                <span>2</span>
                             </div>
                             <div class="subtotal d-flex justify-content-between">
                                 <h5>小計:</h5>
-                                <span>520.22</span>
+                                <span>$2</span>
                             </div>
                             <div class="shipping-fee d-flex justify-content-between">
                                 <h5>運費:</h5>
@@ -130,7 +130,7 @@
                             </div>
                             <div class="total d-flex justify-content-between">
                                 <h5>總計:</h5>
-                                <span>520.22</span>
+                                <span>2</span>
                             </div>
                         </div>
                     </div>
@@ -139,10 +139,19 @@
                 <div id="section4">
                     <!-- 功能按鈕 -->
                     <div class="button-box d-flex justify-content-between">
-                        <div class="l-button"><a class="btn btn-primary" href="/shopping1" role="button">上一步</a>
+                        <div class="l-button"><a class="btn btn-primary" href="/shopping1" role="button">上一步</a></div>
 
-                        </div>
-                        <div class="r-button"><a class="btn btn-primary" href="/shopping3" role="button">下一步</a></div>
+                        <!-- form表單  id 須要對應 input 的 form="formtext"-->
+                        <form id="formtext" method="POST" action="/shopping3" > 
+                             @csrf
+                        </form>
+
+                        <!-- submit -->
+                        <label for="submit">
+                            <input type="submit" form="formtext" id="submit" value="下一步" class="btn btn-primary">
+                        </label>
+                        
+                        {{-- <div class="r-button"><button class="btn btn-primary" type="submit" role="button">下一步</button></div> --}}
                     </div>
                 </div>
             </div>
@@ -156,26 +165,4 @@
             egrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
         </script>
 
-        <script>
-           
-
-            //使用fetch 刪除 ProductEdit管理頁 的次要圖片
-            function delete_img(id){
-                // 準備表單以及內部的資料
-                let formData = new FormData();
-                formData.append("_method", 'DELETE');
-                formData.append("_token", '{{ csrf_token() }}');
-
-                //將準備好的表單籍由fetch送到後台
-                fetch("/product/delete_img/"+id,{
-                    method:'POST',
-                    body:formData
-                    }).then(function(response) {
-                        //成功從資料庫删除資料後，將自己的HTML元素消除
-                        let element = document.querySelector('#sup_img'+id)
-                        element.parentNode.removeChild(element);
-                })
-            }
-            //備註 fetch 不會自動更新網頁
-        </script>
     @endsection

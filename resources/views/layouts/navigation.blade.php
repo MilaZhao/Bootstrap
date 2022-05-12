@@ -28,9 +28,11 @@
                         {{ __('會員管理') }}
                     </x-nav-link>
 
-                    {{-- <x-nav-link :href="'/checkedout1'" :active="request()->is('checkedout1*')">
-                        {{ __('購物車') }}
-                    </x-nav-link> --}}
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="'/order'" :active="request()->is('order*')">
+                            訂單管理
+                        </x-nav-link>
+                    </div>
                 </div>
             </div>
 

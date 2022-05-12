@@ -46,7 +46,7 @@
                         <a class="nav-link" href="/product">Product管理</a>
                     </li> --}}
                 
-                <div class="d-flex justify-content-center text-end">
+                <div class="d-flex justify-content-center text-end align-items-center">
                     <a href="/shopping1" class="shoppingCar px-3"><i class="fas fa-shopping-cart"></i></a>
                     @auth
                     {{-- 如果帳號是管理者  要顯示後台的連結 --}}

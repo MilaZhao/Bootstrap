@@ -9,6 +9,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FilesController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/shopping2', [ShoppingCartController::class, 'step02']);
     Route::post('/shopping3', [ShoppingCartController::class, 'step03']);
     Route::post('/shopping4', [ShoppingCartController::class, 'step04']);
+    Route::get('/show_order/{id}', [ShoppingCartController::class, 'show_order']); //展示訂單
 });
 
 
@@ -93,6 +95,12 @@ Route::prefix('/account')->middleware(['auth','power'])->group(function () {
     Route::delete('/delete/{id}', [AccountController::class, 'destroy']); //刪除 D
 });
 
+// 訂單管理相關路由
+Route::prefix('/order')->middleware(['auth','power'])->group(function () {
+    Route::get('/', [OrderController::class, 'index']); //總表,列表頁 = Read
+    Route::get('/edit/{id}', [OrderController::class, 'edit']); //編輯頁 U
+    Route::post('/update/{id}', [OrderController::class, 'update']); //更新  U
+});
 
 
 
